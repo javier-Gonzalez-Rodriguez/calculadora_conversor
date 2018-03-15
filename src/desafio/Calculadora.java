@@ -5,6 +5,8 @@
  */
 package desafio;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author javier
@@ -66,6 +68,7 @@ public class Calculadora extends javax.swing.JFrame {
         RBromanoEntrada = new javax.swing.JRadioButtonMenuItem();
         RBescritoEntrada = new javax.swing.JRadioButtonMenuItem();
         RBbinarioEntrada = new javax.swing.JRadioButtonMenuItem();
+        jMenuItem1 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         RBdecimalSalida = new javax.swing.JRadioButtonMenuItem();
         RBoctalSalida = new javax.swing.JRadioButtonMenuItem();
@@ -277,28 +280,38 @@ public class Calculadora extends javax.swing.JFrame {
 
         GRBentrada.add(RBdecimalEntrada);
         RBdecimalEntrada.setSelected(true);
-        RBdecimalEntrada.setText("decimal");
+        RBdecimalEntrada.setText("Decimal");
         jMenu1.add(RBdecimalEntrada);
 
         GRBentrada.add(RBhexadecimalEntrada);
-        RBhexadecimalEntrada.setText("hexadecimal");
+        RBhexadecimalEntrada.setText("Hexadecimal");
         jMenu1.add(RBhexadecimalEntrada);
 
         GRBentrada.add(RBoctalEntrada);
-        RBoctalEntrada.setText("octal");
+        RBoctalEntrada.setText("Octal");
         jMenu1.add(RBoctalEntrada);
 
         GRBentrada.add(RBromanoEntrada);
-        RBromanoEntrada.setText("romano");
+        RBromanoEntrada.setText("Romano simplificado");
         jMenu1.add(RBromanoEntrada);
 
         GRBentrada.add(RBescritoEntrada);
-        RBescritoEntrada.setText("escrito");
+        RBescritoEntrada.setText("Escrito");
+        RBescritoEntrada.setToolTipText("separar los \"mil\" con \"-\"");
         jMenu1.add(RBescritoEntrada);
 
         GRBentrada.add(RBbinarioEntrada);
-        RBbinarioEntrada.setText("binario");
+        RBbinarioEntrada.setText("Binario");
         jMenu1.add(RBbinarioEntrada);
+
+        jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/Informacion.png"))); // NOI18N
+        jMenuItem1.setText("Información");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem1);
 
         jMenuBar1.add(jMenu1);
 
@@ -306,27 +319,27 @@ public class Calculadora extends javax.swing.JFrame {
 
         GRBsalida.add(RBdecimalSalida);
         RBdecimalSalida.setSelected(true);
-        RBdecimalSalida.setText("decimal");
+        RBdecimalSalida.setText("Decimal");
         jMenu2.add(RBdecimalSalida);
 
         GRBsalida.add(RBoctalSalida);
-        RBoctalSalida.setText("octal");
+        RBoctalSalida.setText("Octal");
         jMenu2.add(RBoctalSalida);
 
         GRBsalida.add(RBhexadecimalSalida);
-        RBhexadecimalSalida.setText("hexadecimal");
+        RBhexadecimalSalida.setText("Hexadecimal");
         jMenu2.add(RBhexadecimalSalida);
 
         GRBsalida.add(RBromanoSalida);
-        RBromanoSalida.setText("romano");
+        RBromanoSalida.setText("Romano");
         jMenu2.add(RBromanoSalida);
 
         GRBsalida.add(RBbinarioSalida);
-        RBbinarioSalida.setText("binario");
+        RBbinarioSalida.setText("Binario");
         jMenu2.add(RBbinarioSalida);
 
         GRBsalida.add(RBescritoSalida);
-        RBescritoSalida.setText("escrito");
+        RBescritoSalida.setText("Escrito");
         jMenu2.add(RBescritoSalida);
 
         jMenuBar1.add(jMenu2);
@@ -443,6 +456,11 @@ public class Calculadora extends javax.swing.JFrame {
         TAsalida.setText("");
     }//GEN-LAST:event_BlimpiarActionPerformed
 
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        JOptionPane.showMessageDialog(null, "selecciona el tipo de valor que vas a introducir y el tipo\nal que quieres convertirlo"
+                + "\nNota: en los valores escritos separa los miles por un guion ejemplo: tres-mil");
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -520,6 +538,7 @@ public class Calculadora extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;

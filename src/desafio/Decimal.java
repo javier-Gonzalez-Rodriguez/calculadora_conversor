@@ -42,7 +42,7 @@ public class Decimal {
         String nums[] = num.split(" ");
         String numero = "";
         for (int i = 0; i < nums.length; i++) {
-            numero += conversion(nums[i], i);
+            numero += conversionToEscrito(nums[i], i);
         }
         return num;
     }
@@ -51,7 +51,7 @@ public class Decimal {
         return "";
     }
     
-    public int conversion(String numero, int posicion){
+    public int conversionToEscrito(String numero, int posicion){
         int solucion = 0;
         boolean num_esp = false;
         switch(posicion){
@@ -179,7 +179,35 @@ public class Decimal {
                     }
                 break;
             case 4:
-                
+                switch(numero){
+                    case "mil":
+                        solucion = 1;
+                        break;
+                    case "dos-mil":
+                        solucion = 1;
+                        break;
+                    case "tres-mil":
+                        solucion = 2;
+                        break;
+                    case "cuatro-mil":
+                        solucion = 3;
+                        break;
+                    case "cinco-mil":
+                        solucion = 4;
+                        break;
+                    case "seis-mil":
+                        solucion = 5;
+                        break;
+                    case "siete-mil":
+                        solucion = 6;
+                        break;
+                    case "ocho-mil":
+                        solucion = 7;
+                        break;
+                    case "nnueve-mil":
+                        solucion = 8;
+                        break;
+                }
                 break;
         }
         return solucion;

@@ -19,7 +19,7 @@
                   <ComponentRef name="GRBentrada"/>
                 </Property>
                 <Property name="selected" type="boolean" value="true"/>
-                <Property name="text" type="java.lang.String" value="decimal"/>
+                <Property name="text" type="java.lang.String" value="Decimal"/>
               </Properties>
             </MenuItem>
             <MenuItem class="javax.swing.JRadioButtonMenuItem" name="RBhexadecimalEntrada">
@@ -27,7 +27,7 @@
                 <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
                   <ComponentRef name="GRBentrada"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="hexadecimal"/>
+                <Property name="text" type="java.lang.String" value="Hexadecimal"/>
               </Properties>
             </MenuItem>
             <MenuItem class="javax.swing.JRadioButtonMenuItem" name="RBoctalEntrada">
@@ -35,7 +35,7 @@
                 <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
                   <ComponentRef name="GRBentrada"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="octal"/>
+                <Property name="text" type="java.lang.String" value="Octal"/>
               </Properties>
             </MenuItem>
             <MenuItem class="javax.swing.JRadioButtonMenuItem" name="RBromanoEntrada">
@@ -43,7 +43,7 @@
                 <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
                   <ComponentRef name="GRBentrada"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="romano"/>
+                <Property name="text" type="java.lang.String" value="Romano simplificado"/>
               </Properties>
             </MenuItem>
             <MenuItem class="javax.swing.JRadioButtonMenuItem" name="RBescritoEntrada">
@@ -51,7 +51,8 @@
                 <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
                   <ComponentRef name="GRBentrada"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="escrito"/>
+                <Property name="text" type="java.lang.String" value="Escrito"/>
+                <Property name="toolTipText" type="java.lang.String" value="separar los &quot;mil&quot; con &quot;-&quot;"/>
               </Properties>
             </MenuItem>
             <MenuItem class="javax.swing.JRadioButtonMenuItem" name="RBbinarioEntrada">
@@ -59,8 +60,19 @@
                 <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
                   <ComponentRef name="GRBentrada"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="binario"/>
+                <Property name="text" type="java.lang.String" value="Binario"/>
               </Properties>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem1">
+              <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/recursos/Informacion.png"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Informaci&#xf3;n"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem1ActionPerformed"/>
+              </Events>
             </MenuItem>
           </SubComponents>
         </Menu>
@@ -75,7 +87,7 @@
                   <ComponentRef name="GRBsalida"/>
                 </Property>
                 <Property name="selected" type="boolean" value="true"/>
-                <Property name="text" type="java.lang.String" value="decimal"/>
+                <Property name="text" type="java.lang.String" value="Decimal"/>
               </Properties>
             </MenuItem>
             <MenuItem class="javax.swing.JRadioButtonMenuItem" name="RBoctalSalida">
@@ -83,7 +95,7 @@
                 <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
                   <ComponentRef name="GRBsalida"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="octal"/>
+                <Property name="text" type="java.lang.String" value="Octal"/>
               </Properties>
             </MenuItem>
             <MenuItem class="javax.swing.JRadioButtonMenuItem" name="RBhexadecimalSalida">
@@ -91,7 +103,7 @@
                 <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
                   <ComponentRef name="GRBsalida"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="hexadecimal"/>
+                <Property name="text" type="java.lang.String" value="Hexadecimal"/>
               </Properties>
             </MenuItem>
             <MenuItem class="javax.swing.JRadioButtonMenuItem" name="RBromanoSalida">
@@ -99,7 +111,7 @@
                 <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
                   <ComponentRef name="GRBsalida"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="romano"/>
+                <Property name="text" type="java.lang.String" value="Romano"/>
               </Properties>
             </MenuItem>
             <MenuItem class="javax.swing.JRadioButtonMenuItem" name="RBbinarioSalida">
@@ -107,7 +119,7 @@
                 <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
                   <ComponentRef name="GRBsalida"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="binario"/>
+                <Property name="text" type="java.lang.String" value="Binario"/>
               </Properties>
             </MenuItem>
             <MenuItem class="javax.swing.JRadioButtonMenuItem" name="RBescritoSalida">
@@ -115,7 +127,7 @@
                 <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
                   <ComponentRef name="GRBsalida"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="escrito"/>
+                <Property name="text" type="java.lang.String" value="Escrito"/>
               </Properties>
             </MenuItem>
           </SubComponents>
