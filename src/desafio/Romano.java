@@ -34,7 +34,7 @@ public class Romano {
                     break;
                     
                 case 3:
-                    
+                    valorRomano += valorToRomano3(numero);
                     break;
                 default:
                     JOptionPane.showMessageDialog(null, "Valor demasiado alto\n valor maximo admitido \"999\" se calculará apartir de las centenas el \nnumero introducido", ""
@@ -84,8 +84,118 @@ public class Romano {
         return solucion;
     }
     
-    private String valorToRomano2(String num){
-        
-        return "";
+    /**
+     * valor de la decena
+     * @param valor numero que contiene la decena
+     * @return devuelve el valor en romano
+     */
+    private String valorToRomano2(String valor){
+        String solucion = "";
+        switch(valor){
+            case "1":
+                solucion = "X";
+                break;
+            case "2":
+                solucion = "XX";
+                break;
+            case "3":
+                solucion = "XXX";
+                break;
+            case "4":
+                solucion = "XXXX";
+                break;
+            case "5":
+                solucion = "L";
+                break;
+            case "6":
+                solucion = "LX";
+                break;
+            case "7":
+                solucion = "LXX";
+                break;
+            case "8":
+                solucion = "LXXX";
+                break;
+            case "9":
+                solucion = "LXXXX";
+                break;
+        }
+        return solucion;
+    }
+    
+    /**
+     * ponemos el valor de la centena 
+     * @param valor numero a convertir 
+     * @return devuelve el numero comvertido
+     */
+    private String valorToRomano3(String valor){  
+        String solucion = "";
+        switch(valor){
+            case "1":
+                solucion = "C";
+                break;
+            case "2":
+                solucion = "CC";
+                break;
+            case "3":
+                solucion = "CCC";
+                break;
+            case "4":
+                solucion = "CCCC";
+                break;
+            case "5":
+                solucion = "D";
+                break;
+            case "6":
+                solucion = "DC";
+                break;
+            case "7":
+                solucion = "DCC";
+                break;
+            case "8":
+                solucion = "DCCC";
+                break;
+            case "9":
+                solucion = "DCCCC";
+                break;
+        }
+        return solucion;
+    }
+    
+    /**
+     * convertimos de romano a decimal
+     * @param numero numero que vamos a convertir
+     * @return devuelve el numero convertido
+     */
+    public int RomanoToDecimal(String numero){
+        int numero_decimal = 0;
+        for (int i = numero.length(); i > 0; i--) {
+            String num = numero.charAt(i)+"";
+            switch(num){
+                case "I":
+                    numero_decimal += 1;
+                    break;
+                case "V":
+                    numero_decimal += 5;
+                    break;
+                case "X":
+                    numero_decimal += 10;
+                    break;
+                case "L":
+                    numero_decimal += 50;
+                    break;
+                case "C":
+                    numero_decimal += 100;
+                    break;
+                case "D":
+                    numero_decimal += 500;
+                    break;
+                default: 
+                    JOptionPane.showMessageDialog(null, "Valor demasiado alto\n valor maximo admitido \"DCCCCLXXXXVIIII(999)\" se calculará apartir de las centenas el \nnumero introducido", ""
+                            + "valor maximo excedido", JOptionPane.ERROR_MESSAGE);
+                    break;
+            }
+        }
+        return numero_decimal;
     }
 }

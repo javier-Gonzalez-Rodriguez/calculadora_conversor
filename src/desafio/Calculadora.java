@@ -5,6 +5,7 @@
  */
 package desafio;
 
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 /**
@@ -14,10 +15,20 @@ import javax.swing.JOptionPane;
 public class Calculadora extends javax.swing.JFrame {
 
     /**
+     * variables de clase
+     */
+    private ArrayList<String> lista_nums;
+    private ArrayList<String> lista_caract;
+    private String num;
+    /**
      * Creates new form Calculadora
      */
+    
     public Calculadora() {
         initComponents();
+         lista_nums = new ArrayList();
+         lista_caract = new ArrayList();
+         num = "";
     }
 
     /**
@@ -151,9 +162,19 @@ public class Calculadora extends javax.swing.JFrame {
         jPanel3.add(Brestar);
 
         Belevado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/elevado.png"))); // NOI18N
+        Belevado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BelevadoActionPerformed(evt);
+            }
+        });
         jPanel3.add(Belevado);
 
         Braiz.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/raiz.png"))); // NOI18N
+        Braiz.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BraizActionPerformed(evt);
+            }
+        });
         jPanel3.add(Braiz);
 
         Bsuma.setText("+");
@@ -351,85 +372,111 @@ public class Calculadora extends javax.swing.JFrame {
 
     private void B8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B8ActionPerformed
         TAsalida.setText(TAsalida.getText()+"2");
+        num += "2";
     }//GEN-LAST:event_B8ActionPerformed
 
     private void B2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B2ActionPerformed
         TAsalida.setText(TAsalida.getText()+"8");
+        num += "8";
     }//GEN-LAST:event_B2ActionPerformed
 
     private void BmultiplicarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BmultiplicarActionPerformed
+        lista_nums.add(num);
+        lista_caract.add("*");
         TAsalida.setText(TAsalida.getText()+"*");
     }//GEN-LAST:event_BmultiplicarActionPerformed
 
     private void B0ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B0ActionPerformed
         TAsalida.setText(TAsalida.getText()+"0");
+        num += "0";
     }//GEN-LAST:event_B0ActionPerformed
 
     private void B7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B7ActionPerformed
         TAsalida.setText(TAsalida.getText()+"1");
+        num += "1";
     }//GEN-LAST:event_B7ActionPerformed
 
     private void B3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B3ActionPerformed
         TAsalida.setText(TAsalida.getText()+"3");
+        num += "3";
     }//GEN-LAST:event_B3ActionPerformed
 
     private void B4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B4ActionPerformed
         TAsalida.setText(TAsalida.getText()+"4");
+        num += "4";
     }//GEN-LAST:event_B4ActionPerformed
 
     private void B5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B5ActionPerformed
         TAsalida.setText(TAsalida.getText()+"5");
+        num += "5";
     }//GEN-LAST:event_B5ActionPerformed
 
     private void B6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B6ActionPerformed
         TAsalida.setText(TAsalida.getText()+"6");
+        num += "6";
     }//GEN-LAST:event_B6ActionPerformed
 
     private void B1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B1ActionPerformed
         TAsalida.setText(TAsalida.getText()+"7");
+        num += "7";
     }//GEN-LAST:event_B1ActionPerformed
 
     private void B9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B9ActionPerformed
         TAsalida.setText(TAsalida.getText()+"9");
+        num += "9";
     }//GEN-LAST:event_B9ActionPerformed
 
     private void BcomaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BcomaActionPerformed
         TAsalida.setText(TAsalida.getText()+",");
+        //--------------------------------> ?
+        num += ",";
     }//GEN-LAST:event_BcomaActionPerformed
 
     private void BmoduloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BmoduloActionPerformed
+       lista_nums.add(num);
+        lista_caract.add("%");
         TAsalida.setText(TAsalida.getText()+"%");
+        num = "";
     }//GEN-LAST:event_BmoduloActionPerformed
 
     private void BsumaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BsumaActionPerformed
+        lista_nums.add(num);
+        lista_caract.add("+");
         TAsalida.setText(TAsalida.getText()+"+");
+        num = "";
     }//GEN-LAST:event_BsumaActionPerformed
 
     private void BrestarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BrestarActionPerformed
+        lista_nums.add(num);
+        lista_caract.add("-");
         TAsalida.setText(TAsalida.getText()+"-");
+        num = "";
     }//GEN-LAST:event_BrestarActionPerformed
 
     private void BdividirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BdividirActionPerformed
-       TAsalida.setText(TAsalida.getText()+"/");
+        lista_nums.add(num);
+        lista_caract.add("/");
+        TAsalida.setText(TAsalida.getText()+"/");
+        num = "";
     }//GEN-LAST:event_BdividirActionPerformed
 
     private void BigualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BigualActionPerformed
-        if (RBdecimalEntrada.isSelected()) {
+        if (RBdecimalEntrada.isSelected() && RBdecimalSalida.isSelected()) {
+            operacion();
+        }
+        if (RBoctalEntrada.isSelected() && RBoctalSalida.isSelected()) {
             
         }
-        if (RBoctalEntrada.isSelected()) {
+        if (RBhexadecimalEntrada.isSelected() && RBhexadecimalSalida.isSelected()) {
             
         }
-        if (RBhexadecimalEntrada.isSelected()) {
+        if (RBromanoEntrada.isSelected() && RBromanoSalida.isSelected()) {
             
         }
-        if (RBromanoEntrada.isSelected()) {
+        if (RBescritoEntrada.isSelected() && RBescritoSalida.isSelected()) {
             
         }
-        if (RBescritoEntrada.isSelected()) {
-            
-        }
-        if (RBbinarioEntrada.isSelected()) {
+        if (RBbinarioEntrada.isSelected() && RBbinarioSalida.isSelected()) {
             
         }
     }//GEN-LAST:event_BigualActionPerformed
@@ -461,6 +508,23 @@ public class Calculadora extends javax.swing.JFrame {
                 + "\nNota: en los valores escritos separa los miles por un guion ejemplo: tres-mil");
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
+    private void BelevadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BelevadoActionPerformed
+        lista_nums.add(TAsalida.getText());
+        lista_caract.add("^");
+        TAsalida.setText(TAsalida.getText()+"^");
+        num = "";
+    }//GEN-LAST:event_BelevadoActionPerformed
+
+    private void BraizActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BraizActionPerformed
+        lista_nums.add(TAsalida.getText());
+        lista_caract.add("√");
+        TAsalida.setText(TAsalida.getText()+"√");
+        num = "";
+    }//GEN-LAST:event_BraizActionPerformed
+
+    private void operacion(){
+        
+    }
     /**
      * @param args the command line arguments
      */
