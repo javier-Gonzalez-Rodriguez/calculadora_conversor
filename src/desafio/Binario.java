@@ -22,7 +22,7 @@ public class Binario {
         this.num = num;
     }
     
-    public String Binary(){
+    public String decimalToBinary(){
         ArrayList<Integer> lista = new ArrayList();
         String conversion="";
         int num = this.num;
@@ -34,5 +34,16 @@ public class Binario {
             conversion+=lista.get(i);
         }
         return conversion;
+    }
+    
+    public int BinarioTodecimal(int num){
+        String numero = ""+num;
+        int nuevo_num = 0;
+        int contador = 0;
+        for (int i = numero.length(); i > 0; i--) {
+            nuevo_num += (Integer.parseInt(numero.charAt(i)+"")*Math.pow(2, contador));
+            contador++;
+        }
+        return nuevo_num;
     }
 }

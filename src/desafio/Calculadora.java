@@ -94,6 +94,7 @@ public class Calculadora extends javax.swing.JFrame {
 
         TAsalida.setColumns(20);
         TAsalida.setRows(5);
+        TAsalida.setAutoscrolls(false);
         TAsalida.setEnabled(false);
         jScrollPane1.setViewportView(TAsalida);
 
@@ -428,14 +429,15 @@ public class Calculadora extends javax.swing.JFrame {
 
     private void BcomaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BcomaActionPerformed
         TAsalida.setText(TAsalida.getText()+",");
-        //--------------------------------> ?
-        num += ",";
+        lista_nums.add(num);
+        lista_caract.add(",");
+        num += "";
     }//GEN-LAST:event_BcomaActionPerformed
 
     private void BmoduloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BmoduloActionPerformed
-       lista_nums.add(num);
+        lista_nums.add(num);
         lista_caract.add("%");
-        TAsalida.setText(TAsalida.getText()+"%");
+        TAsalida.setText(TAsalida.getText() + "%");
         num = "";
     }//GEN-LAST:event_BmoduloActionPerformed
 
@@ -461,8 +463,12 @@ public class Calculadora extends javax.swing.JFrame {
     }//GEN-LAST:event_BdividirActionPerformed
 
     private void BigualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BigualActionPerformed
+        lista_nums.add(num);
+        num = "";
         if (RBdecimalEntrada.isSelected() && RBdecimalSalida.isSelected()) {
-            operacion();
+            TAsalida.setText(operacion()+"");
+            lista_nums.clear();
+            lista_caract.clear();
         }
         if (RBoctalEntrada.isSelected() && RBoctalSalida.isSelected()) {
             
@@ -516,14 +522,93 @@ public class Calculadora extends javax.swing.JFrame {
     }//GEN-LAST:event_BelevadoActionPerformed
 
     private void BraizActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BraizActionPerformed
-        lista_nums.add(TAsalida.getText());
-        lista_caract.add("√");
         TAsalida.setText(TAsalida.getText()+"√");
-        num = "";
+        num = "√";
     }//GEN-LAST:event_BraizActionPerformed
 
-    private void operacion(){
-        
+    /**
+     * extraemos los numeros y la operacion a realizar
+     * @return devolvemos la solucion final
+     */
+    private Double operacion(){
+        double solucion = 0.0;
+        int num1 = 0;
+        String raiz_num = "";
+        String simbolo = "";
+        for (int i = 0; i < lista_nums.size(); i++) {
+            for (int j = 0; j < lista_nums.get(i).length(); j++) {
+                simbolo = ""+lista_nums.get(i).charAt(0);
+                raiz_num = ""+lista_nums.get(i).charAt(i+1);
+            }
+            if (simbolo.equals("√")) {
+                solucion = tipoOperacion(num1, solucion, i,"√");
+            }
+            else{
+                num1 = Integer.parseInt(lista_nums.get(i));
+                solucion = tipoOperacion(num1, solucion, i,"");
+            }
+        }
+        return solucion;
+    }
+    
+    private Double tipoOperacion(int num1, double num2, int index, String simbol){
+        double solucion = 0.0;
+        if (index > 0 && !simbol.equals("√")) {
+            String simbolo = lista_caract.get(index-1);
+            switch(simbolo){
+                case "+":
+                    solucion = num1+num2;
+                    break;
+                case "-":
+                    solucion = num1-num2;
+                    break;
+                case "*":
+                    solucion = num1*num2;
+                    break;
+                case "/":
+                    solucion = num2/num1;
+                    break;
+                case "^":
+                    solucion = Math.pow(num2, num1);
+                    break;
+                case "%":
+                    solucion = num2%num1;
+                    break;
+            }
+        }
+        else{
+            if (simbol.equals("")) {
+                solucion = num1;
+            }
+            if (simbol.equals("√") && index == 0) {
+                solucion = Math.sqrt(num1);
+            }
+            if (simbol.equals("√") && index != 0) {
+                num1 = (int) Math.sqrt(num1);
+                String simbolo = lista_caract.get(index-1);
+                switch (simbolo) {
+                    case "+":
+                        solucion = num1 + num2;
+                        break;
+                    case "-":
+                        solucion = num1 - num2;
+                        break;
+                    case "*":
+                        solucion = num1 * num2;
+                        break;
+                    case "/":
+                        solucion = num2 / num1;
+                        break;
+                    case "^":
+                        solucion = Math.pow(num2, num1);
+                        break;
+                    case "%":
+                        solucion = num2 % num1;
+                        break;
+                }
+            }
+        }
+        return solucion;
     }
     /**
      * @param args the command line arguments

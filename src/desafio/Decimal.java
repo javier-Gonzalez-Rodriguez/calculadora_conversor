@@ -16,28 +16,6 @@ public class Decimal {
     public Decimal() {
     }
     
-    public int OctalTodecimal(int num){
-        String numero = ""+num;
-        int nuevo_num = 0;
-        int contador = 0;
-        for (int i = numero.length(); i > 0; i--) {
-            nuevo_num += (Integer.parseInt(numero.charAt(i)+"")*Math.pow(8, contador));
-            contador++;
-        }
-        return nuevo_num;
-    }
-    
-    public int BinarioTodecimal(int num){
-        String numero = ""+num;
-        int nuevo_num = 0;
-        int contador = 0;
-        for (int i = numero.length(); i > 0; i--) {
-            nuevo_num += (Integer.parseInt(numero.charAt(i)+"")*Math.pow(2, contador));
-            contador++;
-        }
-        return nuevo_num;
-    }
-    
     public String escritoTodecimal(String num){
         String nums[] = num.split(" ");
         String numero = "";
@@ -47,9 +25,6 @@ public class Decimal {
         return num;
     }
     
-    public String romanoTodecimal(String num){
-        return "";
-    }
     
     public int conversionToEscrito(String numero, int posicion){
         int solucion = 0;

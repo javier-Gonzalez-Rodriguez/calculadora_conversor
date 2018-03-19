@@ -36,6 +36,15 @@ public class Octal {
         return num;
     }
     
-    
+    public int OctalTodecimal(int num){
+        String numero = ""+num;
+        int nuevo_num = 0;
+        int contador = 0;
+        for (int i = numero.length(); i > 0; i--) {
+            nuevo_num += (Integer.parseInt(numero.charAt(i)+"")*Math.pow(8, contador));
+            contador++;
+        }
+        return nuevo_num;
+    }
     
 }
