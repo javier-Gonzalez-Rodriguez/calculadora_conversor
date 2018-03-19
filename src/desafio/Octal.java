@@ -10,13 +10,13 @@ package desafio;
  * @author user
  */
 public class Octal {
-    private int num;
+    private double num;
     
     /**
      * constructor de la clase
      * @param num numero a convertir
      */
-    public Octal(int num) {
+    public Octal(double num) {
         this.num = num;
     }
     
@@ -24,16 +24,16 @@ public class Octal {
      * convertimos el numero a octal
      * @return devuelve el numero en octal
      */
-    public int decToOctal(){
-        int num = 0;
+    public String decToOctal(){
         String numero = "";
-        while(this.num != 0){
-            numero = this.num%8+numero;
+        
+        while((int)this.num%8 != 0  && (int)this.num%8 != 1){
+            numero =(int) (this.num%8)+numero;
             this.num /= 8;
         }
-        
-        num = Integer.parseInt(numero);
-        return num;
+        numero = (this.num%8)+numero;
+        System.out.println(numero);
+        return numero;
     }
     
     public int OctalTodecimal(int num){

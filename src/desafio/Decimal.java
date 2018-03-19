@@ -16,7 +16,7 @@ public class Decimal {
     public Decimal() {
     }
     
-    public String escritoTodecimal(String num){
+    public String escritoToDecimal(String num){
         String nums[] = num.split(" ");
         String numero = "";
         for (int i = 0; i < nums.length; i++) {
@@ -26,43 +26,45 @@ public class Decimal {
     }
     
     
-    public int conversionToEscrito(String numero, int posicion){
-        int solucion = 0;
+    private String conversionToEscrito(String numero, int posicion){
+        String solucion = "";
         boolean num_esp = false;
         switch(posicion){
             case 1:
                 if (false) {
                     switch(numero){
                         case "cero":
-                            solucion = 0;
+                            solucion += 0;
                             break;
                         case "uno":
-                            solucion = 1;
+                            solucion += 1;
                             break;
                         case "dos":
-                            solucion = 2;
+                            solucion += 2;
                             break;
                         case "tres":
-                            solucion = 3;
+                            solucion += 3;
                             break;
                         case "cuatro":
-                            solucion = 4;
+                            solucion += 4;
                             break;
                         case "cinco":
-                            solucion = 5;
+                            solucion += 5;
                             break;
                         case "seis":
-                            solucion = 6;
+                            solucion += 6;
                             break;
                         case "siete":
-                            solucion = 7;
+                            solucion += 7;
                             break;
                         case "ocho":
-                            solucion = 8;
+                            solucion += 8;
                             break;
                         case "nueve":
-                            solucion = 9;
+                            solucion += 9;
                             break;
+                        case "coma":
+                            solucion += ",";
                     }
                 }
                 break;
@@ -70,117 +72,127 @@ public class Decimal {
                 switch(numero){
                     case "diez":
                         num_esp = true;
-                        solucion = 10;
+                        solucion += 10;
                         break;
                     case "once":
                         num_esp = true;
-                        solucion = 11;
+                        solucion += 11;
                         break;
                     case "doce":
                         num_esp = true;
-                        solucion = 12;
+                        solucion += 12;
                         break;
                     case "trece":
                         num_esp = true;
-                        solucion = 13;
+                        solucion += 13;
                         break;
                     case "catorce":
                         num_esp = true;
-                        solucion = 14;
+                        solucion += 14;
                         break;
                     case "quince":
                         num_esp = true;
-                        solucion = 15;
+                        solucion += 15;
                         break;
                     case "veinte":
-                        solucion = 1;
+                        solucion += 1;
                         break;
                     case "treinta":
-                        solucion = 2;
+                        solucion += 2;
                         break;
                     case "cuarenta":
-                        solucion = 3;
+                        solucion += 3;
                         break;
                     case "cincuenta":
-                        solucion = 4;
+                        solucion += 4;
                         break;
                     case "sesenta":
-                        solucion = 5;
+                        solucion += 5;
                         break;
                     case "setenta":
-                        solucion = 6;
+                        solucion += 6;
                         break;
                     case "ochenta":
-                        solucion = 7;
+                        solucion += 7;
                         break;
                     case "noventa":
-                        solucion = 8;
+                        solucion += 8;
+                        break;
+                    case "coma":
+                        solucion = ",";
                         break;
                     default:
-                        solucion = numero_dos_digitos(numero);
+                        solucion += numero_dos_digitos(numero);
+                        break;
                 }
                 break;
             case 3:
                 switch(numero){
                         case "cien":
-                            solucion = 1;
+                            solucion += 1;
                             break;
                         case "doscientos":
-                            solucion = 1;
+                            solucion += 1;
                             break;
                         case "trescientos":
-                            solucion = 2;
+                            solucion += 2;
                             break;
                         case "cuatrocientos":
-                            solucion = 3;
+                            solucion += 3;
                             break;
                         case "quinientos":
-                            solucion = 4;
+                            solucion += 4;
                             break;
                         case "seiscientos":
-                            solucion = 5;
+                            solucion += 5;
                             break;
                         case "setecientos":
-                            solucion = 6;
+                            solucion += 6;
                             break;
                         case "ochocientos":
-                            solucion = 7;
+                            solucion += 7;
                             break;
                         case "novecientos":
-                            solucion = 8;
+                            solucion += 8;
+                            break;
+                        case "coma":
+                            solucion = ",";
                             break;
                         default:
-                            solucion = num_tres_digitos(numero);
+                            solucion += num_tres_digitos(numero);
                     }
                 break;
             case 4:
                 switch(numero){
                     case "mil":
-                        solucion = 1;
+                        solucion += 1;
                         break;
                     case "dos-mil":
-                        solucion = 1;
+                        solucion += 1;
                         break;
                     case "tres-mil":
-                        solucion = 2;
+                        solucion += 2;
                         break;
                     case "cuatro-mil":
-                        solucion = 3;
+                        solucion += 3;
                         break;
                     case "cinco-mil":
-                        solucion = 4;
+                        solucion += 4;
                         break;
                     case "seis-mil":
-                        solucion = 5;
+                        solucion += 5;
                         break;
                     case "siete-mil":
-                        solucion = 6;
+                        solucion += 6;
                         break;
                     case "ocho-mil":
-                        solucion = 7;
+                        solucion += 7;
                         break;
                     case "nnueve-mil":
-                        solucion = 8;
+                        solucion += 8;
+                        break;
+                    case "coma":
+                        solucion = ",";
                         break;
                 }
                 break;
@@ -270,5 +282,34 @@ public class Decimal {
                 break;
         }
         return solucion;
+    }
+    
+    
+    
+    public String decimalToEscrito(double num){
+        String longitud = num +"";
+        String solucion = "";
+        for (int i = longitud.length(); i > 0; i--) {
+          solucion += convertirToE(num+"", i);  
+        }
+        return solucion;
+    }
+    
+    private String convertirToE(String n, int index){
+        String valor = ""+ n.charAt(index);
+        switch(index){
+            case 1:
+                break;
+            case 2:
+                break;
+            case 3:
+                break;
+            case 4:
+                break;
+        }
+        return "";
+    }
+    private String unDigito(){
+        return "";
     }
 }

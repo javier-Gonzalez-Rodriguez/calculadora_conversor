@@ -20,15 +20,16 @@ public class Calculadora extends javax.swing.JFrame {
     private ArrayList<String> lista_nums;
     private ArrayList<String> lista_caract;
     private String num;
+
     /**
      * Creates new form Calculadora
      */
-    
+
     public Calculadora() {
         initComponents();
-         lista_nums = new ArrayList();
-         lista_caract = new ArrayList();
-         num = "";
+        lista_nums = new ArrayList();
+        lista_caract = new ArrayList();
+        num = "";
     }
 
     /**
@@ -90,7 +91,7 @@ public class Calculadora extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setLayout(new java.awt.GridLayout(1, 0));
+        jPanel1.setLayout(new java.awt.GridLayout());
 
         TAsalida.setColumns(20);
         TAsalida.setRows(5);
@@ -311,6 +312,7 @@ public class Calculadora extends javax.swing.JFrame {
 
         GRBentrada.add(RBoctalEntrada);
         RBoctalEntrada.setText("Octal");
+        RBoctalEntrada.setEnabled(false);
         jMenu1.add(RBoctalEntrada);
 
         GRBentrada.add(RBromanoEntrada);
@@ -346,6 +348,7 @@ public class Calculadora extends javax.swing.JFrame {
 
         GRBsalida.add(RBoctalSalida);
         RBoctalSalida.setText("Octal");
+        RBoctalSalida.setEnabled(false);
         jMenu2.add(RBoctalSalida);
 
         GRBsalida.add(RBhexadecimalSalida);
@@ -372,66 +375,65 @@ public class Calculadora extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void B8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B8ActionPerformed
-        TAsalida.setText(TAsalida.getText()+"2");
+        TAsalida.setText(TAsalida.getText() + "2");
         num += "2";
     }//GEN-LAST:event_B8ActionPerformed
 
     private void B2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B2ActionPerformed
-        TAsalida.setText(TAsalida.getText()+"8");
+        TAsalida.setText(TAsalida.getText() + "8");
         num += "8";
     }//GEN-LAST:event_B2ActionPerformed
 
     private void BmultiplicarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BmultiplicarActionPerformed
         lista_nums.add(num);
         lista_caract.add("*");
-        TAsalida.setText(TAsalida.getText()+"*");
+        TAsalida.setText(TAsalida.getText() + "*");
+        num = "";
     }//GEN-LAST:event_BmultiplicarActionPerformed
 
     private void B0ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B0ActionPerformed
-        TAsalida.setText(TAsalida.getText()+"0");
+        TAsalida.setText(TAsalida.getText() + "0");
         num += "0";
     }//GEN-LAST:event_B0ActionPerformed
 
     private void B7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B7ActionPerformed
-        TAsalida.setText(TAsalida.getText()+"1");
+        TAsalida.setText(TAsalida.getText() + "1");
         num += "1";
     }//GEN-LAST:event_B7ActionPerformed
 
     private void B3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B3ActionPerformed
-        TAsalida.setText(TAsalida.getText()+"3");
+        TAsalida.setText(TAsalida.getText() + "3");
         num += "3";
     }//GEN-LAST:event_B3ActionPerformed
 
     private void B4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B4ActionPerformed
-        TAsalida.setText(TAsalida.getText()+"4");
+        TAsalida.setText(TAsalida.getText() + "4");
         num += "4";
     }//GEN-LAST:event_B4ActionPerformed
 
     private void B5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B5ActionPerformed
-        TAsalida.setText(TAsalida.getText()+"5");
+        TAsalida.setText(TAsalida.getText() + "5");
         num += "5";
     }//GEN-LAST:event_B5ActionPerformed
 
     private void B6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B6ActionPerformed
-        TAsalida.setText(TAsalida.getText()+"6");
+        TAsalida.setText(TAsalida.getText() + "6");
         num += "6";
     }//GEN-LAST:event_B6ActionPerformed
 
     private void B1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B1ActionPerformed
-        TAsalida.setText(TAsalida.getText()+"7");
+        TAsalida.setText(TAsalida.getText() + "7");
         num += "7";
     }//GEN-LAST:event_B1ActionPerformed
 
     private void B9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B9ActionPerformed
-        TAsalida.setText(TAsalida.getText()+"9");
+        TAsalida.setText(TAsalida.getText() + "9");
         num += "9";
     }//GEN-LAST:event_B9ActionPerformed
 
     private void BcomaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BcomaActionPerformed
-        TAsalida.setText(TAsalida.getText()+",");
-        lista_nums.add(num);
-        lista_caract.add(",");
-        num += "";
+        TAsalida.setText(TAsalida.getText() + ",");
+        num += ".";
     }//GEN-LAST:event_BcomaActionPerformed
 
     private void BmoduloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BmoduloActionPerformed
@@ -444,69 +446,92 @@ public class Calculadora extends javax.swing.JFrame {
     private void BsumaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BsumaActionPerformed
         lista_nums.add(num);
         lista_caract.add("+");
-        TAsalida.setText(TAsalida.getText()+"+");
+        TAsalida.setText(TAsalida.getText() + "+");
         num = "";
     }//GEN-LAST:event_BsumaActionPerformed
 
     private void BrestarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BrestarActionPerformed
         lista_nums.add(num);
         lista_caract.add("-");
-        TAsalida.setText(TAsalida.getText()+"-");
+        TAsalida.setText(TAsalida.getText() + "-");
         num = "";
     }//GEN-LAST:event_BrestarActionPerformed
 
     private void BdividirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BdividirActionPerformed
         lista_nums.add(num);
         lista_caract.add("/");
-        TAsalida.setText(TAsalida.getText()+"/");
+        TAsalida.setText(TAsalida.getText() + "/");
         num = "";
     }//GEN-LAST:event_BdividirActionPerformed
 
     private void BigualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BigualActionPerformed
         lista_nums.add(num);
         num = "";
-        if (RBdecimalEntrada.isSelected() && RBdecimalSalida.isSelected()) {
-            TAsalida.setText(operacion()+"");
-            lista_nums.clear();
-            lista_caract.clear();
+        String solucion = "";
+        if (RBdecimalEntrada.isSelected()) {
+            if (RBdecimalSalida.isSelected()) {
+                solucion = operacion() + "";
+            }
+            if (RBoctalSalida.isSelected()) {
+                /*------------------------------------------------->
+                Octal oct = new Octal(operacion());
+                solucion = oct.decToOctal();
+                */
+            }
+            if (RBbinarioSalida.isSelected()) {
+                Binario bi = new Binario(operacion());
+                solucion = bi.decimalToBinary();
+            }
+            if (RBescritoSalida.isSelected()) {
+                Decimal de = new Decimal();
+                solucion = "0";
+            }
         }
-        if (RBoctalEntrada.isSelected() && RBoctalSalida.isSelected()) {
-            
+        if (RBoctalEntrada.isSelected()) {
+
         }
-        if (RBhexadecimalEntrada.isSelected() && RBhexadecimalSalida.isSelected()) {
-            
+        if (RBhexadecimalEntrada.isSelected()) {
+
         }
-        if (RBromanoEntrada.isSelected() && RBromanoSalida.isSelected()) {
-            
+        if (RBromanoEntrada.isSelected()) {
+
         }
-        if (RBescritoEntrada.isSelected() && RBescritoSalida.isSelected()) {
-            
+        if (RBescritoEntrada.isSelected()) {
+
         }
-        if (RBbinarioEntrada.isSelected() && RBbinarioSalida.isSelected()) {
-            
+        if (RBbinarioEntrada.isSelected()) {
+
         }
+
+        TAsalida.setText(solucion);
+        lista_nums.clear();
+        lista_caract.clear();
+        num = solucion + "";
     }//GEN-LAST:event_BigualActionPerformed
 
     private void BabrirllaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BabrirllaveActionPerformed
-        TAsalida.setText(TAsalida.getText()+"(");
+        TAsalida.setText(TAsalida.getText() + "(");
     }//GEN-LAST:event_BabrirllaveActionPerformed
 
     private void BcerrarllaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BcerrarllaveActionPerformed
-        TAsalida.setText(TAsalida.getText()+")");
+        TAsalida.setText(TAsalida.getText() + ")");
     }//GEN-LAST:event_BcerrarllaveActionPerformed
 
     private void BretrocesoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BretrocesoActionPerformed
         String nuevo_valor = "";
         String valor_antiguo = TAsalida.getText();
-        for (int i = 0; i < valor_antiguo.length()-1; i++) {
+        for (int i = 0; i < valor_antiguo.length() - 1; i++) {
             nuevo_valor += valor_antiguo.charAt(i);
         }
-        
+
         TAsalida.setText(nuevo_valor);
     }//GEN-LAST:event_BretrocesoActionPerformed
 
     private void BlimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BlimpiarActionPerformed
+        lista_nums.clear();
+        lista_caract.clear();
         TAsalida.setText("");
+        num = "";
     }//GEN-LAST:event_BlimpiarActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
@@ -517,66 +542,68 @@ public class Calculadora extends javax.swing.JFrame {
     private void BelevadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BelevadoActionPerformed
         lista_nums.add(TAsalida.getText());
         lista_caract.add("^");
-        TAsalida.setText(TAsalida.getText()+"^");
+        TAsalida.setText(TAsalida.getText() + "^");
         num = "";
     }//GEN-LAST:event_BelevadoActionPerformed
 
     private void BraizActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BraizActionPerformed
-        TAsalida.setText(TAsalida.getText()+"√");
+        TAsalida.setText(TAsalida.getText() + "√");
         num = "√";
     }//GEN-LAST:event_BraizActionPerformed
 
     /**
      * extraemos los numeros y la operacion a realizar
+     *
      * @return devolvemos la solucion final
      */
-    private Double operacion(){
+    private Double operacion() {
         double solucion = 0.0;
-        int num1 = 0;
+        double num1 = 0.0;
         String raiz_num = "";
         String simbolo = "";
         for (int i = 0; i < lista_nums.size(); i++) {
-            for (int j = 0; j < lista_nums.get(i).length(); j++) {
-                simbolo = ""+lista_nums.get(i).charAt(0);
-                raiz_num = ""+lista_nums.get(i).charAt(i+1);
-            }
+
+            simbolo = "" + lista_nums.get(i).charAt(0);
+
             if (simbolo.equals("√")) {
-                solucion = tipoOperacion(num1, solucion, i,"√");
-            }
-            else{
-                num1 = Integer.parseInt(lista_nums.get(i));
-                solucion = tipoOperacion(num1, solucion, i,"");
+                for (int j = 1; j < lista_nums.get(i).length(); j++) {
+                    raiz_num += lista_nums.get(i).charAt(j);
+                }
+                num1 = Double.parseDouble(raiz_num);
+                solucion = tipoOperacion(num1, solucion, i, "√");
+            } else {
+                num1 = Double.parseDouble(lista_nums.get(i));
+                solucion = tipoOperacion(num1, solucion, i, "");
             }
         }
         return solucion;
     }
-    
-    private Double tipoOperacion(int num1, double num2, int index, String simbol){
+
+    private Double tipoOperacion(double num1, double num2, int index, String simbol) {
         double solucion = 0.0;
         if (index > 0 && !simbol.equals("√")) {
-            String simbolo = lista_caract.get(index-1);
-            switch(simbolo){
+            String simbolo = lista_caract.get(index - 1);
+            switch (simbolo) {
                 case "+":
-                    solucion = num1+num2;
+                    solucion = num1 + num2;
                     break;
                 case "-":
-                    solucion = num1-num2;
+                    solucion = num1 - num2;
                     break;
                 case "*":
-                    solucion = num1*num2;
+                    solucion = num1 * num2;
                     break;
                 case "/":
-                    solucion = num2/num1;
+                    solucion = num2 / num1;
                     break;
                 case "^":
                     solucion = Math.pow(num2, num1);
                     break;
                 case "%":
-                    solucion = num2%num1;
+                    solucion = num2 % num1;
                     break;
             }
-        }
-        else{
+        } else {
             if (simbol.equals("")) {
                 solucion = num1;
             }
@@ -585,7 +612,7 @@ public class Calculadora extends javax.swing.JFrame {
             }
             if (simbol.equals("√") && index != 0) {
                 num1 = (int) Math.sqrt(num1);
-                String simbolo = lista_caract.get(index-1);
+                String simbolo = lista_caract.get(index - 1);
                 switch (simbolo) {
                     case "+":
                         solucion = num1 + num2;
@@ -610,6 +637,7 @@ public class Calculadora extends javax.swing.JFrame {
         }
         return solucion;
     }
+
     /**
      * @param args the command line arguments
      */

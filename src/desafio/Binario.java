@@ -18,8 +18,8 @@ public class Binario {
      * constructor de la clase
      * @param num numero a convertir
      */
-    public Binario(int num) {
-        this.num = num;
+    public Binario(double num) {
+        this.num =(int) num;
     }
     
     public String decimalToBinary(){

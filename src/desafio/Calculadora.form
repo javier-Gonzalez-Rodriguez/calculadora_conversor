@@ -36,6 +36,7 @@
                   <ComponentRef name="GRBentrada"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Octal"/>
+                <Property name="enabled" type="boolean" value="false"/>
               </Properties>
             </MenuItem>
             <MenuItem class="javax.swing.JRadioButtonMenuItem" name="RBromanoEntrada">
@@ -96,6 +97,7 @@
                   <ComponentRef name="GRBsalida"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Octal"/>
+                <Property name="enabled" type="boolean" value="false"/>
               </Properties>
             </MenuItem>
             <MenuItem class="javax.swing.JRadioButtonMenuItem" name="RBhexadecimalSalida">
