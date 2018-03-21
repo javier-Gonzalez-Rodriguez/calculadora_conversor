@@ -5,6 +5,8 @@
  */
 package desafio;
 
+import InterfacesSecundarias.NumsRomanos;
+import InterfacesSecundarias.Numshexadecimales;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
@@ -20,6 +22,7 @@ public class Calculadora extends javax.swing.JFrame {
     private ArrayList<String> lista_nums;
     private ArrayList<String> lista_caract;
     private String num;
+    private int positionX, positionY;
 
     /**
      * Creates new form Calculadora
@@ -29,6 +32,8 @@ public class Calculadora extends javax.swing.JFrame {
         lista_nums = new ArrayList();
         lista_caract = new ArrayList();
         num = "";
+        positionX = 0;
+        positionY = 0;
     }
 
     /**
@@ -59,13 +64,13 @@ public class Calculadora extends javax.swing.JFrame {
         Bsuma = new javax.swing.JButton();
         Bigual = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
-        B1 = new javax.swing.JButton();
+        B7 = new javax.swing.JButton();
         B2 = new javax.swing.JButton();
         B9 = new javax.swing.JButton();
         B4 = new javax.swing.JButton();
         B5 = new javax.swing.JButton();
         B6 = new javax.swing.JButton();
-        B7 = new javax.swing.JButton();
+        B1 = new javax.swing.JButton();
         B8 = new javax.swing.JButton();
         B3 = new javax.swing.JButton();
         B0 = new javax.swing.JButton();
@@ -90,6 +95,13 @@ public class Calculadora extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Calculadora");
+        setPreferredSize(new java.awt.Dimension(328, 311));
+        setResizable(false);
+        addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentMoved(java.awt.event.ComponentEvent evt) {
+                formComponentMoved(evt);
+            }
+        });
 
         jPanel1.setLayout(new java.awt.GridLayout(1, 0));
 
@@ -199,13 +211,15 @@ public class Calculadora extends javax.swing.JFrame {
 
         jPanel4.setLayout(new java.awt.GridLayout(4, 3));
 
-        B1.setText("7");
-        B1.addActionListener(new java.awt.event.ActionListener() {
+        B7.setText("7");
+        B7.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        B7.setFocusPainted(false);
+        B7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                B1ActionPerformed(evt);
+                B7ActionPerformed(evt);
             }
         });
-        jPanel4.add(B1);
+        jPanel4.add(B7);
 
         B2.setText("8");
         B2.addActionListener(new java.awt.event.ActionListener() {
@@ -247,13 +261,13 @@ public class Calculadora extends javax.swing.JFrame {
         });
         jPanel4.add(B6);
 
-        B7.setText("1");
-        B7.addActionListener(new java.awt.event.ActionListener() {
+        B1.setText("1");
+        B1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                B7ActionPerformed(evt);
+                B1ActionPerformed(evt);
             }
         });
-        jPanel4.add(B7);
+        jPanel4.add(B1);
 
         B8.setText("2");
         B8.addActionListener(new java.awt.event.ActionListener() {
@@ -446,10 +460,10 @@ public class Calculadora extends javax.swing.JFrame {
         num += "0";
     }//GEN-LAST:event_B0ActionPerformed
 
-    private void B7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B7ActionPerformed
+    private void B1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B1ActionPerformed
         TAsalida.setText(TAsalida.getText() + "1");
         num += "1";
-    }//GEN-LAST:event_B7ActionPerformed
+    }//GEN-LAST:event_B1ActionPerformed
 
     private void B3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B3ActionPerformed
         TAsalida.setText(TAsalida.getText() + "3");
@@ -471,10 +485,10 @@ public class Calculadora extends javax.swing.JFrame {
         num += "6";
     }//GEN-LAST:event_B6ActionPerformed
 
-    private void B1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B1ActionPerformed
+    private void B7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B7ActionPerformed
         TAsalida.setText(TAsalida.getText() + "7");
         num += "7";
-    }//GEN-LAST:event_B1ActionPerformed
+    }//GEN-LAST:event_B7ActionPerformed
 
     private void B9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B9ActionPerformed
         TAsalida.setText(TAsalida.getText() + "9");
@@ -516,87 +530,92 @@ public class Calculadora extends javax.swing.JFrame {
 
     private void BigualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BigualActionPerformed
         lista_nums.add(num);
-        num = "";
         int notDecimal = 0;
         double decimal = 0.0;
         String solucion = "";
-        if (RBdecimalEntrada.isSelected()) {
-            if (RBdecimalSalida.isSelected()) {
-                solucion = operacion() + "";
-            }
-            if (RBoctalSalida.isSelected()) {
-                /*------------------------------------------------->
+        try {
+            if (RBdecimalEntrada.isSelected()) {
+                num = "";
+                if (RBdecimalSalida.isSelected()) {
+                    solucion = operacion() + "";
+                }
+                if (RBoctalSalida.isSelected()) {
+                    /*------------------------------------------------->
                 Octal oct = new Octal(operacion());
                 solucion = oct.decToOctal();
-                 */
-            }
-            if (RBbinarioSalida.isSelected()) {
-                Binario bi = new Binario();
-                decimal = operacion();
-                notDecimal = (int) decimal;
-                solucion = bi.decimalToBinary(notDecimal);
-            }
-            if (RBescritoSalida.isSelected()) {
-                Decimal de = new Decimal();
-                decimal = operacion();
-                notDecimal = (int) decimal;
-                solucion = de.decimalToEscrito(notDecimal + "");
-            }
-            if (RBhexadecimalSalida.isSelected()) {
-                Hexadecimal he = new Hexadecimal();
-                decimal = operacion();
-                notDecimal = (int) decimal;
-                solucion = he.decimalToHex(notDecimal);
-            }
-            if (RBromanoSalida.isSelected()) {
-                Romano ro = new Romano();
-                decimal = operacion();
-                notDecimal = (int) decimal;
-                solucion = ro.decimalToRomano(notDecimal);
-            }
-        }
-        if (RBoctalEntrada.isSelected()) {
-            //++++++++++++++++++++++++++++
-        }
-        if (RBhexadecimalEntrada.isSelected()) {
-            Hexadecimal he = new Hexadecimal();
-            ArrayList<Integer> lista = new ArrayList();
-            if (RBdecimalSalida.isSelected()) {
-                for (int i = 0; i < lista_nums.size(); i++) {
-                    
+                     */
+                }
+                if (RBbinarioSalida.isSelected()) {
+                    Binario bi = new Binario();
+                    decimal = operacion();
+                    notDecimal = (int) decimal;
+                    solucion = bi.decimalToBinary(notDecimal);
+                }
+                if (RBescritoSalida.isSelected()) {
+                    Decimal de = new Decimal();
+                    decimal = operacion();
+                    notDecimal = (int) decimal;
+                    solucion = de.decimalToEscrito(notDecimal + "");
+                }
+                if (RBhexadecimalSalida.isSelected()) {
+                    Hexadecimal he = new Hexadecimal();
+                    decimal = operacion();
+                    notDecimal = (int) decimal;
+                    solucion = he.decimalToHex(notDecimal);
+                }
+                if (RBromanoSalida.isSelected()) {
+                    Romano ro = new Romano();
+                    decimal = operacion();
+                    notDecimal = (int) decimal;
+                    solucion = ro.decimalToRomano(notDecimal);
                 }
             }
-            if (RBoctalSalida.isSelected()) {
-                /*------------------------------------------------->
-                 */
+            if (RBoctalEntrada.isSelected()) {
+                //++++++++++++++++++++++++++++
             }
-            if (RBbinarioSalida.isSelected()) {
-                
+            if (RBhexadecimalEntrada.isSelected()) {
+                Hexadecimal he = new Hexadecimal();
+                String numero = num+"";
+                if (RBdecimalSalida.isSelected()) {
+                    solucion = he.HexToDecimal(numero)+"";
+                }
+                if (RBoctalSalida.isSelected()) {
+                    /*------------------------------------------------->
+                     */
+                }
+                if (RBbinarioSalida.isSelected()) {
+                    Binario bi = new Binario();
+                    solucion = bi.decimalToBinary(he.HexToDecimal(numero))+"";
+                }
+                if (RBescritoSalida.isSelected()) {
+                    Decimal de = new Decimal();
+                    solucion = de.decimalToEscrito(he.HexToDecimal(numero)+"");
+                }
+                if (RBhexadecimalSalida.isSelected()) {
+                    solucion = numero;
+                }
+                if (RBromanoSalida.isSelected()) {
+                    Romano ro = new Romano();
+                    solucion = ro.decimalToRomano(he.HexToDecimal(numero));
+                }
             }
-            if (RBescritoSalida.isSelected()) {
-                
+            if (RBromanoEntrada.isSelected()) {
+                //-------------------------------------------------------------->aqui
             }
-            if (RBhexadecimalSalida.isSelected()) {
-                
-            }
-            if (RBromanoSalida.isSelected()) {
-                
-            }
-        }
-        if (RBromanoEntrada.isSelected()) {
+            if (RBescritoEntrada.isSelected()) {
 
-        }
-        if (RBescritoEntrada.isSelected()) {
+            }
+            if (RBbinarioEntrada.isSelected()) {
 
-        }
-        if (RBbinarioEntrada.isSelected()) {
+            }
 
+            TAsalida.setText(solucion);
+            lista_nums.clear();
+            lista_caract.clear();
+            num = solucion + "";
+        } catch (Exception ex) {
+            TAsalida.setText("Error");
         }
-
-        TAsalida.setText(solucion);
-        lista_nums.clear();
-        lista_caract.clear();
-        num = solucion + "";
     }//GEN-LAST:event_BigualActionPerformed
 
     private void BabrirllaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BabrirllaveActionPerformed
@@ -642,118 +661,67 @@ public class Calculadora extends javax.swing.JFrame {
     }//GEN-LAST:event_BraizActionPerformed
 
     private void RBescritoEntradaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RBescritoEntradaActionPerformed
-        Bcoma.setEnabled(false);
-        Bdividir.setEnabled(false);
-        Brestar.setEnabled(false);
-        Bsuma.setEnabled(false);
-        Bmodulo.setEnabled(false);
-        Bmultiplicar.setEnabled(false);
-        Babrirllave.setEnabled(false);
-        Bcerrarllave.setEnabled(false);
+        desactivarBotones();
     }//GEN-LAST:event_RBescritoEntradaActionPerformed
 
     private void RBromanoEntradaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RBromanoEntradaActionPerformed
-        Bcoma.setEnabled(false);
-        Bdividir.setEnabled(false);
-        Brestar.setEnabled(false);
-        Bsuma.setEnabled(false);
-        Bmodulo.setEnabled(false);
-        Bmultiplicar.setEnabled(false);
-        Babrirllave.setEnabled(false);
-        Bcerrarllave.setEnabled(false);
+        desactivarBotones();
+        NumsRomanos R = new NumsRomanos(this);
+        R.setLocation(positionX + 328, positionY);
+        R.setVisible(true);
     }//GEN-LAST:event_RBromanoEntradaActionPerformed
 
     private void RBbinarioEntradaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RBbinarioEntradaActionPerformed
-        Bcoma.setEnabled(false);
-        Bdividir.setEnabled(false);
-        Brestar.setEnabled(false);
-        Bsuma.setEnabled(false);
-        Bmodulo.setEnabled(false);
-        Bmultiplicar.setEnabled(false);
-        Babrirllave.setEnabled(false);
-        Bcerrarllave.setEnabled(false);
+        desactivarBotones();
+        B2.setEnabled(false);
+        B3.setEnabled(false);
+        B4.setEnabled(false);
+        B5.setEnabled(false);
+        B6.setEnabled(false);
+        B7.setEnabled(false);
+        B8.setEnabled(false);
+        B9.setEnabled(false);
     }//GEN-LAST:event_RBbinarioEntradaActionPerformed
 
     private void RBhexadecimalEntradaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RBhexadecimalEntradaActionPerformed
-        Bcoma.setEnabled(false);
-        Bdividir.setEnabled(false);
-        Brestar.setEnabled(false);
-        Bsuma.setEnabled(false);
-        Bmodulo.setEnabled(false);
-        Bmultiplicar.setEnabled(false);
-        Babrirllave.setEnabled(false);
-        Bcerrarllave.setEnabled(false);
+        desactivarBotones();
+        Numshexadecimales he = new Numshexadecimales(this);
+        he.setLocation(positionX + 328, positionY);
+        he.setVisible(true);
     }//GEN-LAST:event_RBhexadecimalEntradaActionPerformed
 
     private void RBdecimalEntradaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RBdecimalEntradaActionPerformed
         if (RBdecimalSalida.isSelected()) {
-            Bcoma.setEnabled(true);
-            Bdividir.setEnabled(true);
-            Brestar.setEnabled(true);
-            Bsuma.setEnabled(true);
-            Bmodulo.setEnabled(true);
-            Bmultiplicar.setEnabled(true);
-            Babrirllave.setEnabled(true);
-            Bcerrarllave.setEnabled(true);
+            activarBotones();
         }
     }//GEN-LAST:event_RBdecimalEntradaActionPerformed
 
     private void RBhexadecimalSalidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RBhexadecimalSalidaActionPerformed
-        Bcoma.setEnabled(false);
-        Bdividir.setEnabled(false);
-        Brestar.setEnabled(false);
-        Bsuma.setEnabled(false);
-        Bmodulo.setEnabled(false);
-        Bmultiplicar.setEnabled(false);
-        Babrirllave.setEnabled(false);
-        Bcerrarllave.setEnabled(false);
+        desactivarBotones();
     }//GEN-LAST:event_RBhexadecimalSalidaActionPerformed
 
     private void RBromanoSalidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RBromanoSalidaActionPerformed
-        Bcoma.setEnabled(false);
-        Bdividir.setEnabled(false);
-        Brestar.setEnabled(false);
-        Bsuma.setEnabled(false);
-        Bmodulo.setEnabled(false);
-        Bmultiplicar.setEnabled(false);
-        Babrirllave.setEnabled(false);
-        Bcerrarllave.setEnabled(false);
+        desactivarBotones();
     }//GEN-LAST:event_RBromanoSalidaActionPerformed
 
     private void RBbinarioSalidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RBbinarioSalidaActionPerformed
-        Bcoma.setEnabled(false);
-        Bdividir.setEnabled(false);
-        Brestar.setEnabled(false);
-        Bsuma.setEnabled(false);
-        Bmodulo.setEnabled(false);
-        Bmultiplicar.setEnabled(false);
-        Babrirllave.setEnabled(false);
-        Bcerrarllave.setEnabled(false);
+        desactivarBotones();
     }//GEN-LAST:event_RBbinarioSalidaActionPerformed
 
     private void RBescritoSalidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RBescritoSalidaActionPerformed
-        Bcoma.setEnabled(false);
-        Bdividir.setEnabled(false);
-        Brestar.setEnabled(false);
-        Bsuma.setEnabled(false);
-        Bmodulo.setEnabled(false);
-        Bmultiplicar.setEnabled(false);
-        Babrirllave.setEnabled(false);
-        Bcerrarllave.setEnabled(false);
+        desactivarBotones();
     }//GEN-LAST:event_RBescritoSalidaActionPerformed
 
     private void RBdecimalSalidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RBdecimalSalidaActionPerformed
         if (RBdecimalEntrada.isSelected()) {
-            Bcoma.setEnabled(true);
-            Bdividir.setEnabled(true);
-            Brestar.setEnabled(true);
-            Bsuma.setEnabled(true);
-            Bmodulo.setEnabled(true);
-            Bmultiplicar.setEnabled(true);
-            Babrirllave.setEnabled(true);
-            Bcerrarllave.setEnabled(true);
+            activarBotones();
         }
     }//GEN-LAST:event_RBdecimalSalidaActionPerformed
+
+    private void formComponentMoved(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentMoved
+        positionX = (int) this.getLocation().getX();
+        positionY = (int) this.getLocation().getY();
+    }//GEN-LAST:event_formComponentMoved
 
     /**
      * extraemos los numeros y la operacion a realizar
@@ -849,6 +817,44 @@ public class Calculadora extends javax.swing.JFrame {
             }
         }
         return solucion;
+    }
+
+    /**
+     * añadimos cualquier valor especial como puede ser en romano X o en
+     * hexadecimal E...
+     */
+    public void addNumsEsp(String num) {
+        TAsalida.append(num);
+    }
+
+    public void activarBotones() {
+        Bcoma.setEnabled(true);
+        Bdividir.setEnabled(true);
+        Brestar.setEnabled(true);
+        Bsuma.setEnabled(true);
+        Bmodulo.setEnabled(true);
+        Bmultiplicar.setEnabled(true);
+        Babrirllave.setEnabled(true);
+        Bcerrarllave.setEnabled(true);
+        B2.setEnabled(true);
+        B3.setEnabled(true);
+        B4.setEnabled(true);
+        B5.setEnabled(true);
+        B6.setEnabled(true);
+        B7.setEnabled(true);
+        B8.setEnabled(true);
+        B9.setEnabled(true);
+    }
+
+    public void desactivarBotones() {
+        Bcoma.setEnabled(false);
+        Bdividir.setEnabled(false);
+        Brestar.setEnabled(false);
+        Bsuma.setEnabled(false);
+        Bmodulo.setEnabled(false);
+        Bmultiplicar.setEnabled(false);
+        Babrirllave.setEnabled(false);
+        Bcerrarllave.setEnabled(false);
     }
 
     /**
