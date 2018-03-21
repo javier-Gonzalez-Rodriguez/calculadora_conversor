@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package pruebas;
+package desafio;
 
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
@@ -54,7 +54,7 @@ public class Decimal {
                     }
 
                 } else {
-                    solucion = dosDigitos(Integer.parseInt(valor.charAt(1) + ""));
+                    solucion += dosDigitos(Integer.parseInt(valor.charAt(1) + ""));
                     if (Integer.parseInt(valor.charAt(2) + "") != 0) {
                         solucion += " y ";
                         solucion += unDigito(Integer.parseInt(valor.charAt(2) + ""));
@@ -73,7 +73,7 @@ public class Decimal {
                     }
 
                 } else {
-                    solucion = dosDigitos(Integer.parseInt(valor.charAt(2) + ""));
+                    solucion += dosDigitos(Integer.parseInt(valor.charAt(2) + ""));
                     if (Integer.parseInt(valor.charAt(3) + "") != 0) {
                         solucion += " y ";
                         solucion += unDigito(Integer.parseInt(valor.charAt(2) + ""));
