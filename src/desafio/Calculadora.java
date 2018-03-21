@@ -484,7 +484,7 @@ public class Calculadora extends javax.swing.JFrame {
             }
             if (RBescritoSalida.isSelected()) {
                 Decimal de = new Decimal();
-                solucion = "0";
+                solucion = de.decimalToEscrito(operacion());
             }
         }
         if (RBoctalEntrada.isSelected()) {

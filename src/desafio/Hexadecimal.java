@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package desafio;
+package pruebas;
 
 import java.util.ArrayList;
 
@@ -12,25 +12,24 @@ import java.util.ArrayList;
  * @author javier
  */
 public class Hexadecimal {
-    private int num;
-
+    
     /**
      * constructor de la clase 
      * @param num valor a convertir
      */
-    public Hexadecimal(int num) {
-        this.num = num;
+    public Hexadecimal() {
     }
     
     /**
-     * conversion de exadecimal a numero
+     * conversion de hexadecimal a numero
      * @param hexadecimal numero en hexadecimal para convertir
      * @return devuelve el valor en decimal
      */
     public int HexToDecimal(String hexadecimal){
-        int num=0;
+        int num = 0;
+        int potencia = hexadecimal.length()-1;
         for (int i = 0; i < hexadecimal.length(); i++) {
-            num+=conversionHex(hexadecimal.charAt(i));
+            num+=(Integer.parseInt(conversionHex(hexadecimal.charAt(i)))*(Math.pow(16, potencia-i)));
         }
         return num;
     }
@@ -39,29 +38,29 @@ public class Hexadecimal {
      * @param num n letra a convertir en decimal
      * @return devuelve el valor de la letra
      */
-    public int conversionHex(char num){
-        int solucion = 0;
+    public String conversionHex(char num){
+        String solucion = "";
         switch(num){
             case 'A':
-                solucion = 10;
+                solucion = "10";
                 break;
             case 'B':
-                solucion = 11;
+                solucion = "11";
                 break;
             case 'C':
-                solucion = 12;
+                solucion = "12";
                 break;
             case 'D':
-                solucion = 13;
+                solucion = "13";
                 break;
             case 'E':
-                solucion = 14;
+                solucion = "14";
                 break;
             case 'F':
-                solucion = 10;
+                solucion = "10";
                 break;
             default:
-                solucion = Integer.parseInt(num+"");
+                solucion = num+"";
                 break;
         }
         return solucion;
@@ -71,10 +70,10 @@ public class Hexadecimal {
      * convertimos decimal a hexadecimal
      * @return devolvemos el numero en hexadecimal
      */
-    public String decimalToHex(){
+    public String decimalToHex(int numero){
         ArrayList<Integer> lista = new ArrayList();
         String resultado ="";
-        int num = this.num;
+        int num = numero;
         while(num != 0){
             lista.add(num%16);
             num/=16;
@@ -82,7 +81,6 @@ public class Hexadecimal {
         for (int i = lista.size()-1; i >= 0; i--) {
             resultado+= caracteresHex(lista.get(i));
         }
-        System.out.println("j "+ resultado);
         return resultado;
     }
     

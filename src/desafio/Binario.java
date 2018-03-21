@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package desafio;
+package pruebas;
 
 import java.util.ArrayList;
 
@@ -12,20 +12,17 @@ import java.util.ArrayList;
  * @author Poniente
  */
 public class Binario {
-    private int num;
 
     /**
      * constructor de la clase
-     * @param num numero a convertir
      */
-    public Binario(double num) {
-        this.num =(int) num;
+    public Binario() {
     }
     
-    public String decimalToBinary(){
+    public String decimalToBinary(int numero){
         ArrayList<Integer> lista = new ArrayList();
         String conversion="";
-        int num = this.num;
+        int num = numero;
         while(num != 0){
             lista.add(num%2);
             num/=2;
@@ -39,10 +36,12 @@ public class Binario {
     public int BinarioTodecimal(int num){
         String numero = ""+num;
         int nuevo_num = 0;
-        int contador = 0;
-        for (int i = numero.length(); i > 0; i--) {
-            nuevo_num += (Integer.parseInt(numero.charAt(i)+"")*Math.pow(2, contador));
-            contador++;
+        int potencia = numero.length()-1;
+        for (int i = 0; i < numero.length(); i++) {
+            if (numero.charAt(i) == '1') {
+                
+                nuevo_num += (Math.pow(2, (potencia-i)));
+            }
         }
         return nuevo_num;
     }

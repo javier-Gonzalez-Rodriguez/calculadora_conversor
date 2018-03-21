@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package desafio;
+package pruebas;
 
 import javax.swing.JOptionPane;
 
@@ -17,32 +17,28 @@ public class Romano {
     }
     /**
      * convertimos el valor decimal a romano
-     * @param num numero decimal para convertit
+     * @param num numero decimal para convertir
      * @return devuelve el valor en numero romano
      */
     public String decimalToRomano(int num){
         String valorDecimal = ""+num;
         String valorRomano = "";
-        for (int i = valorRomano.length(); i > 0 ; i--) {
-            String numero = valorDecimal.charAt(i)+"";
-            switch(i){
-                case 1:
-                    valorRomano += valorToRomano1(numero);
-                    break;
-                case 2:
-                    valorRomano += valorToRomano2(numero);
-                    break;
-                    
-                case 3:
-                    valorRomano += valorToRomano3(numero);
-                    break;
-                default:
-                    JOptionPane.showMessageDialog(null, "Valor demasiado alto\n valor maximo admitido \"999\" se calculará apartir de las centenas el \nnumero introducido", ""
-                            + "valor maximo excedido", JOptionPane.ERROR_MESSAGE);
-                    break;
-            }
+        int longitud = valorDecimal.length();
+        switch(longitud){
+            case 1:
+                valorRomano = valorToRomano1(valorDecimal);
+                break;
+            case 2:
+                valorRomano = valorToRomano2(valorDecimal.charAt(0)+"");
+                valorRomano += valorToRomano1(valorDecimal.charAt(1)+"");
+                break;
+            case 3:
+                valorRomano = valorToRomano3(valorDecimal.charAt(0)+"");
+                valorRomano += valorToRomano2(valorDecimal.charAt(1)+"");
+                valorRomano += valorToRomano1(valorDecimal.charAt(2)+"");
+                break;
         }
-        return "";
+        return valorRomano;
     }
     
     /**
@@ -169,7 +165,7 @@ public class Romano {
      */
     public int RomanoToDecimal(String numero){
         int numero_decimal = 0;
-        for (int i = numero.length(); i > 0; i--) {
+        for (int i = 0; i < numero.length(); i++) {
             String num = numero.charAt(i)+"";
             switch(num){
                 case "I":
