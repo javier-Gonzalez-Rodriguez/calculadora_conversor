@@ -163,7 +163,7 @@ public class Romano {
      * @param numero numero que vamos a convertir
      * @return devuelve el numero convertido
      */
-    public int RomanoToDecimal(String numero){
+    public int RomanoToDecimal(String numero) throws NumeroException{
         int numero_decimal = 0;
         for (int i = 0; i < numero.length(); i++) {
             String num = numero.charAt(i)+"";
@@ -187,9 +187,7 @@ public class Romano {
                     numero_decimal += 500;
                     break;
                 default: 
-                    JOptionPane.showMessageDialog(null, "Valor demasiado alto\n valor maximo admitido \"DCCCCLXXXXVIIII(999)\" se calculará apartir de las centenas el \nnumero introducido", ""
-                            + "valor maximo excedido", JOptionPane.ERROR_MESSAGE);
-                    break;
+                    throw new NumeroException("numero no valido");
             }
         }
         return numero_decimal;

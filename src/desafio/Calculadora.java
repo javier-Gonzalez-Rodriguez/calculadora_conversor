@@ -152,6 +152,7 @@ public class Calculadora extends javax.swing.JFrame {
         PanelOperaciones.add(Bmultiplicar);
 
         Babrirllave.setText("(");
+        Babrirllave.setEnabled(false);
         Babrirllave.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BabrirllaveActionPerformed(evt);
@@ -160,6 +161,7 @@ public class Calculadora extends javax.swing.JFrame {
         PanelOperaciones.add(Babrirllave);
 
         Bcerrarllave.setText(")");
+        Bcerrarllave.setEnabled(false);
         Bcerrarllave.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BcerrarllaveActionPerformed(evt);
@@ -535,7 +537,6 @@ public class Calculadora extends javax.swing.JFrame {
         String solucion = "";
         try {
             if (RBdecimalEntrada.isSelected()) {
-                num = "";
                 if (RBdecimalSalida.isSelected()) {
                     solucion = operacion() + "";
                 }
@@ -575,9 +576,9 @@ public class Calculadora extends javax.swing.JFrame {
             }
             if (RBhexadecimalEntrada.isSelected()) {
                 Hexadecimal he = new Hexadecimal();
-                String numero = num+"";
+                String numero = "" + he.HexToDecimal(num);
                 if (RBdecimalSalida.isSelected()) {
-                    solucion = he.HexToDecimal(numero)+"";
+                    solucion = numero;
                 }
                 if (RBoctalSalida.isSelected()) {
                     /*------------------------------------------------->
@@ -585,36 +586,108 @@ public class Calculadora extends javax.swing.JFrame {
                 }
                 if (RBbinarioSalida.isSelected()) {
                     Binario bi = new Binario();
-                    solucion = bi.decimalToBinary(he.HexToDecimal(numero))+"";
+                    solucion = bi.decimalToBinary(Integer.parseInt(numero)) + "";
                 }
                 if (RBescritoSalida.isSelected()) {
                     Decimal de = new Decimal();
-                    solucion = de.decimalToEscrito(he.HexToDecimal(numero)+"");
+                    solucion = de.decimalToEscrito(numero);
                 }
                 if (RBhexadecimalSalida.isSelected()) {
-                    solucion = numero;
+                    solucion = num;
                 }
                 if (RBromanoSalida.isSelected()) {
                     Romano ro = new Romano();
-                    solucion = ro.decimalToRomano(he.HexToDecimal(numero));
+                    solucion = ro.decimalToRomano(Integer.parseInt(numero));
                 }
             }
             if (RBromanoEntrada.isSelected()) {
-                //-------------------------------------------------------------->aqui
+                Romano ro = new Romano();
+                String numero = "" + ro.RomanoToDecimal(num);
+                if (RBdecimalSalida.isSelected()) {
+                    solucion = numero;
+                }
+                if (RBoctalSalida.isSelected()) {
+                    /*------------------------------------------------->
+                     */
+                }
+                if (RBbinarioSalida.isSelected()) {
+                    Binario bi = new Binario();
+                    solucion = bi.decimalToBinary(Integer.parseInt(numero)) + "";
+                }
+                if (RBescritoSalida.isSelected()) {
+                    Decimal de = new Decimal();
+                    solucion = de.decimalToEscrito(numero + "");
+                }
+                if (RBhexadecimalSalida.isSelected()) {
+                    Hexadecimal hex = new Hexadecimal();
+                    solucion = hex.decimalToHex(Integer.parseInt(numero));
+                }
+                if (RBromanoSalida.isSelected()) {
+                    solucion = num;
+                }
+                
             }
             if (RBescritoEntrada.isSelected()) {
-
+                Decimal escrito = new Decimal();
+                String numero = escrito.escritoToDecimal(num);
+                if (RBdecimalSalida.isSelected()) {
+                    solucion = numero;
+                }
+                if (RBoctalSalida.isSelected()) {
+                    /*------------------------------------------------->
+                     */
+                }
+                if (RBbinarioSalida.isSelected()) {
+                    Binario bi = new Binario();
+                    solucion = bi.decimalToBinary(Integer.parseInt(numero)) + "";
+                }
+                if (RBescritoSalida.isSelected()) {
+                    solucion = num;
+                }
+                if (RBhexadecimalSalida.isSelected()) {
+                    Hexadecimal hex = new Hexadecimal();
+                    solucion = hex.decimalToHex(Integer.parseInt(numero));
+                }
+                if (RBromanoSalida.isSelected()) {
+                    Romano ro = new Romano();
+                    solucion = ro.decimalToRomano(Integer.parseInt(numero));
+                }
             }
             if (RBbinarioEntrada.isSelected()) {
-
+                Binario bi = new Binario();
+                String numero = "" + bi.BinarioTodecimal(Integer.parseInt(num));
+                if (RBdecimalSalida.isSelected()) {
+                    solucion = numero;
+                }
+                if (RBoctalSalida.isSelected()) {
+                    /*------------------------------------------------->
+                     */
+                }
+                if (RBbinarioSalida.isSelected()) {
+                    solucion = num;
+                }
+                if (RBescritoSalida.isSelected()) {
+                    Decimal de = new Decimal();
+                    solucion = de.decimalToEscrito(numero + "");
+                }
+                if (RBhexadecimalSalida.isSelected()) {
+                    Hexadecimal hex = new Hexadecimal();
+                    solucion = hex.decimalToHex(Integer.parseInt(numero));
+                }
+                if (RBromanoSalida.isSelected()) {
+                    Romano ro = new Romano();
+                    solucion = ro.decimalToRomano(Integer.parseInt(numero));
+                }
             }
-
+            
+        } catch (NumeroException ex) {
+            solucion = "Error";
+        } finally {
+            num = "";
             TAsalida.setText(solucion);
             lista_nums.clear();
             lista_caract.clear();
             num = solucion + "";
-        } catch (Exception ex) {
-            TAsalida.setText("Error");
         }
     }//GEN-LAST:event_BigualActionPerformed
 
@@ -632,7 +705,7 @@ public class Calculadora extends javax.swing.JFrame {
         for (int i = 0; i < valor_antiguo.length() - 1; i++) {
             nuevo_valor += valor_antiguo.charAt(i);
         }
-
+        
         TAsalida.setText(nuevo_valor);
     }//GEN-LAST:event_BretrocesoActionPerformed
 
@@ -645,7 +718,8 @@ public class Calculadora extends javax.swing.JFrame {
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         JOptionPane.showMessageDialog(null, "selecciona el tipo de valor que vas a introducir y el tipo\nal que quieres convertirlo"
-                + "\nNota: en los valores escritos separa los miles por un guion ejemplo: tres-mil");
+                + "\n* Numeros escritos: separa los miles por un guion ejemplo: tres-mil"
+                + "\n* Numeros Romanos: se usara la nomenclatura simplificada, es decir, se podran usar hasta 4 veces un valor ejemplo: 4 = IIII");
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void BelevadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BelevadoActionPerformed
@@ -662,6 +736,18 @@ public class Calculadora extends javax.swing.JFrame {
 
     private void RBescritoEntradaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RBescritoEntradaActionPerformed
         desactivarBotones();
+        TAsalida.setEditable(true);
+        TAsalida.setEnabled(true);
+        B2.setEnabled(false);
+        B3.setEnabled(false);
+        B4.setEnabled(false);
+        B5.setEnabled(false);
+        B6.setEnabled(false);
+        B7.setEnabled(false);
+        B8.setEnabled(false);
+        B9.setEnabled(false);
+        B1.setEnabled(false);
+        B0.setEnabled(false);
     }//GEN-LAST:event_RBescritoEntradaActionPerformed
 
     private void RBromanoEntradaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RBromanoEntradaActionPerformed
@@ -681,6 +767,8 @@ public class Calculadora extends javax.swing.JFrame {
         B7.setEnabled(false);
         B8.setEnabled(false);
         B9.setEnabled(false);
+        B1.setEnabled(true);
+        B0.setEnabled(true);
     }//GEN-LAST:event_RBbinarioEntradaActionPerformed
 
     private void RBhexadecimalEntradaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RBhexadecimalEntradaActionPerformed
@@ -734,9 +822,9 @@ public class Calculadora extends javax.swing.JFrame {
         String raiz_num = "";
         String simbolo = "";
         for (int i = 0; i < lista_nums.size(); i++) {
-
+            
             simbolo = "" + lista_nums.get(i).charAt(0);
-
+            
             if (simbolo.equals("√")) {
                 for (int j = 1; j < lista_nums.get(i).length(); j++) {
                     raiz_num += lista_nums.get(i).charAt(j);
@@ -825,8 +913,9 @@ public class Calculadora extends javax.swing.JFrame {
      */
     public void addNumsEsp(String num) {
         TAsalida.append(num);
+        this.num += num;        
     }
-
+    
     public void activarBotones() {
         Bcoma.setEnabled(true);
         Bdividir.setEnabled(true);
@@ -844,9 +933,15 @@ public class Calculadora extends javax.swing.JFrame {
         B7.setEnabled(true);
         B8.setEnabled(true);
         B9.setEnabled(true);
+        Braiz.setEnabled(true);
+        Belevado.setEnabled(true);
+        B1.setEnabled(true);
+        B0.setEnabled(true);
     }
-
+    
     public void desactivarBotones() {
+        TAsalida.setEditable(false);
+        TAsalida.setEnabled(false);
         Bcoma.setEnabled(false);
         Bdividir.setEnabled(false);
         Brestar.setEnabled(false);
@@ -855,6 +950,8 @@ public class Calculadora extends javax.swing.JFrame {
         Bmultiplicar.setEnabled(false);
         Babrirllave.setEnabled(false);
         Bcerrarllave.setEnabled(false);
+        Braiz.setEnabled(false);
+        Belevado.setEnabled(false);
     }
 
     /**

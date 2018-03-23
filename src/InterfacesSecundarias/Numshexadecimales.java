@@ -46,7 +46,7 @@ public class Numshexadecimales extends javax.swing.JFrame {
         setTitle("numeros hexadecimales");
         setPreferredSize(new java.awt.Dimension(424, 65));
         setResizable(false);
-        getContentPane().setLayout(new java.awt.GridLayout());
+        getContentPane().setLayout(new java.awt.GridLayout(1, 0));
 
         BletraA.setText("A");
         BletraA.addActionListener(new java.awt.event.ActionListener() {
