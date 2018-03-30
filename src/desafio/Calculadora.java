@@ -23,6 +23,7 @@ public class Calculadora extends javax.swing.JFrame {
     private ArrayList<String> lista_caract;
     private String num;
     private int positionX, positionY;
+    boolean simbolo_anterior;
 
     /**
      * Creates new form Calculadora
@@ -34,6 +35,7 @@ public class Calculadora extends javax.swing.JFrame {
         num = "";
         positionX = 0;
         positionY = 0;
+        simbolo_anterior = false;
     }
 
     /**
@@ -152,7 +154,6 @@ public class Calculadora extends javax.swing.JFrame {
         PanelOperaciones.add(Bmultiplicar);
 
         Babrirllave.setText("(");
-        Babrirllave.setEnabled(false);
         Babrirllave.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BabrirllaveActionPerformed(evt);
@@ -161,7 +162,6 @@ public class Calculadora extends javax.swing.JFrame {
         PanelOperaciones.add(Babrirllave);
 
         Bcerrarllave.setText(")");
-        Bcerrarllave.setEnabled(false);
         Bcerrarllave.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BcerrarllaveActionPerformed(evt);
@@ -443,11 +443,13 @@ public class Calculadora extends javax.swing.JFrame {
     private void B8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B8ActionPerformed
         TAsalida.setText(TAsalida.getText() + "2");
         num += "2";
+        simbolo_anterior = false;
     }//GEN-LAST:event_B8ActionPerformed
 
     private void B2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B2ActionPerformed
         TAsalida.setText(TAsalida.getText() + "8");
         num += "8";
+        simbolo_anterior = false;
     }//GEN-LAST:event_B2ActionPerformed
 
     private void BmultiplicarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BmultiplicarActionPerformed
@@ -455,51 +457,61 @@ public class Calculadora extends javax.swing.JFrame {
         lista_caract.add("*");
         TAsalida.setText(TAsalida.getText() + "*");
         num = "";
+        simbolo_anterior = true;
     }//GEN-LAST:event_BmultiplicarActionPerformed
 
     private void B0ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B0ActionPerformed
         TAsalida.setText(TAsalida.getText() + "0");
         num += "0";
+        simbolo_anterior = false;
     }//GEN-LAST:event_B0ActionPerformed
 
     private void B1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B1ActionPerformed
         TAsalida.setText(TAsalida.getText() + "1");
         num += "1";
+        simbolo_anterior = false;
     }//GEN-LAST:event_B1ActionPerformed
 
     private void B3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B3ActionPerformed
         TAsalida.setText(TAsalida.getText() + "3");
         num += "3";
+        simbolo_anterior = false;
     }//GEN-LAST:event_B3ActionPerformed
 
     private void B4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B4ActionPerformed
         TAsalida.setText(TAsalida.getText() + "4");
         num += "4";
+        simbolo_anterior = false;
     }//GEN-LAST:event_B4ActionPerformed
 
     private void B5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B5ActionPerformed
         TAsalida.setText(TAsalida.getText() + "5");
         num += "5";
+        simbolo_anterior = false;
     }//GEN-LAST:event_B5ActionPerformed
 
     private void B6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B6ActionPerformed
         TAsalida.setText(TAsalida.getText() + "6");
         num += "6";
+        simbolo_anterior = false;
     }//GEN-LAST:event_B6ActionPerformed
 
     private void B7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B7ActionPerformed
         TAsalida.setText(TAsalida.getText() + "7");
         num += "7";
+        simbolo_anterior = false;
     }//GEN-LAST:event_B7ActionPerformed
 
     private void B9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B9ActionPerformed
         TAsalida.setText(TAsalida.getText() + "9");
         num += "9";
+        simbolo_anterior = false;
     }//GEN-LAST:event_B9ActionPerformed
 
     private void BcomaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BcomaActionPerformed
         TAsalida.setText(TAsalida.getText() + ",");
         num += ".";
+        simbolo_anterior = false;
     }//GEN-LAST:event_BcomaActionPerformed
 
     private void BmoduloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BmoduloActionPerformed
@@ -507,6 +519,7 @@ public class Calculadora extends javax.swing.JFrame {
         lista_caract.add("%");
         TAsalida.setText(TAsalida.getText() + "%");
         num = "";
+        simbolo_anterior = true;
     }//GEN-LAST:event_BmoduloActionPerformed
 
     private void BsumaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BsumaActionPerformed
@@ -514,6 +527,7 @@ public class Calculadora extends javax.swing.JFrame {
         lista_caract.add("+");
         TAsalida.setText(TAsalida.getText() + "+");
         num = "";
+        simbolo_anterior = true;
     }//GEN-LAST:event_BsumaActionPerformed
 
     private void BrestarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BrestarActionPerformed
@@ -521,13 +535,17 @@ public class Calculadora extends javax.swing.JFrame {
         lista_caract.add("-");
         TAsalida.setText(TAsalida.getText() + "-");
         num = "";
+        simbolo_anterior = true;
     }//GEN-LAST:event_BrestarActionPerformed
 
     private void BdividirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BdividirActionPerformed
+
         lista_nums.add(num);
         lista_caract.add("/");
+
         TAsalida.setText(TAsalida.getText() + "/");
         num = "";
+        simbolo_anterior = true;
     }//GEN-LAST:event_BdividirActionPerformed
 
     private void BigualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BigualActionPerformed
@@ -538,7 +556,7 @@ public class Calculadora extends javax.swing.JFrame {
         try {
             if (RBdecimalEntrada.isSelected()) {
                 if (RBdecimalSalida.isSelected()) {
-                    solucion = operacion() + "";
+                    solucion = superOperacion() + "";
                 }
                 if (RBoctalSalida.isSelected()) {
                     /*------------------------------------------------->
@@ -625,7 +643,7 @@ public class Calculadora extends javax.swing.JFrame {
                 if (RBromanoSalida.isSelected()) {
                     solucion = num;
                 }
-                
+
             }
             if (RBescritoEntrada.isSelected()) {
                 Decimal escrito = new Decimal();
@@ -679,7 +697,7 @@ public class Calculadora extends javax.swing.JFrame {
                     solucion = ro.decimalToRomano(Integer.parseInt(numero));
                 }
             }
-            
+
         } catch (NumeroException ex) {
             solucion = "Error";
         } finally {
@@ -693,10 +711,14 @@ public class Calculadora extends javax.swing.JFrame {
 
     private void BabrirllaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BabrirllaveActionPerformed
         TAsalida.setText(TAsalida.getText() + "(");
+        lista_caract.add("(");
+        simbolo_anterior = true;
     }//GEN-LAST:event_BabrirllaveActionPerformed
 
     private void BcerrarllaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BcerrarllaveActionPerformed
         TAsalida.setText(TAsalida.getText() + ")");
+        lista_caract.add(")");
+        simbolo_anterior = true;
     }//GEN-LAST:event_BcerrarllaveActionPerformed
 
     private void BretrocesoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BretrocesoActionPerformed
@@ -707,6 +729,10 @@ public class Calculadora extends javax.swing.JFrame {
         }
         
         TAsalida.setText(nuevo_valor);
+        
+        if (simbolo_anterior) {
+            lista_caract.remove(lista_caract.size()-1);
+        }
     }//GEN-LAST:event_BretrocesoActionPerformed
 
     private void BlimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BlimpiarActionPerformed
@@ -727,11 +753,15 @@ public class Calculadora extends javax.swing.JFrame {
         lista_caract.add("^");
         TAsalida.setText(TAsalida.getText() + "^");
         num = "";
+        simbolo_anterior = true;
     }//GEN-LAST:event_BelevadoActionPerformed
 
     private void BraizActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BraizActionPerformed
         TAsalida.setText(TAsalida.getText() + "√");
-        num = "√";
+        lista_caract.add("√");
+        lista_nums.add(num);
+        num = "";
+        simbolo_anterior = true;
     }//GEN-LAST:event_BraizActionPerformed
 
     private void RBescritoEntradaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RBescritoEntradaActionPerformed
@@ -814,6 +844,8 @@ public class Calculadora extends javax.swing.JFrame {
     /**
      * extraemos los numeros y la operacion a realizar
      *
+     * @deprecated metodo funcional pero no sigue la prioridad de las
+     * operaciones
      * @return devolvemos la solucion final
      */
     private Double operacion() {
@@ -822,9 +854,9 @@ public class Calculadora extends javax.swing.JFrame {
         String raiz_num = "";
         String simbolo = "";
         for (int i = 0; i < lista_nums.size(); i++) {
-            
+
             simbolo = "" + lista_nums.get(i).charAt(0);
-            
+
             if (simbolo.equals("√")) {
                 for (int j = 1; j < lista_nums.get(i).length(); j++) {
                     raiz_num += lista_nums.get(i).charAt(j);
@@ -842,6 +874,7 @@ public class Calculadora extends javax.swing.JFrame {
     /**
      * realizamos la operacion correspondiente
      *
+     * @deprecated operaciones no validas para la prioridad
      * @param num1 primer numero
      * @param num2 segundo numero
      * @param index indice del simbolo a mirar en el array
@@ -913,9 +946,9 @@ public class Calculadora extends javax.swing.JFrame {
      */
     public void addNumsEsp(String num) {
         TAsalida.append(num);
-        this.num += num;        
+        this.num += num;
     }
-    
+
     public void activarBotones() {
         Bcoma.setEnabled(true);
         Bdividir.setEnabled(true);
@@ -938,7 +971,7 @@ public class Calculadora extends javax.swing.JFrame {
         B1.setEnabled(true);
         B0.setEnabled(true);
     }
-    
+
     public void desactivarBotones() {
         TAsalida.setEditable(false);
         TAsalida.setEnabled(false);
@@ -952,6 +985,155 @@ public class Calculadora extends javax.swing.JFrame {
         Bcerrarllave.setEnabled(false);
         Braiz.setEnabled(false);
         Belevado.setEnabled(false);
+    }
+
+    /**
+     * realiza operaciones con orden de prioridad
+     * @return debuelve el resultado de las operaciones
+     */
+    private String superOperacion() {
+        //ArrayList<Integer> posiciones_prioridad = new ArrayList();
+        ArrayList<String> nuevo_lista_nums = new ArrayList();
+        double numero1, numero2;
+        String solucion = "";
+        boolean parentesis = false;
+        try{
+            for (int i = 0; i < lista_caract.size(); i++) {
+                if (lista_caract.get(i).equals("(")) {
+                    parentesis(i, nuevo_lista_nums);
+
+                } else {
+
+                    if (lista_caract.get(i).equals("*") || lista_caract.get(i).equals("/")) {
+                        numero1 = Integer.parseInt(lista_nums.get(i));
+                        numero2 = Integer.parseInt(lista_nums.get(i + 1));
+                        nuevo_lista_nums.add("" + superTipoOperacion(numero1, numero2, i, false));
+                        lista_caract.remove(i);
+                    } else {
+                        if (lista_caract.get(i).equals("√")) {
+                            numero1 = Integer.parseInt(lista_nums.get(i));
+                            nuevo_lista_nums.add("" + superTipoOperacion(numero1, 0, i, true));
+                            lista_caract.remove(i);
+                        } 
+                        else {
+                            nuevo_lista_nums.add(lista_nums.get(i));
+                        }
+                    }
+                }
+            }
+        }
+        catch(IndexOutOfBoundsException ex){
+            System.out.println("error");
+        }
+        
+        nuevo_lista_nums.add(lista_nums.get(lista_nums.size()-1));
+        
+        try{
+            for (int i = 0; i < lista_caract.size(); i++) {
+                String n1 = nuevo_lista_nums.get(0);
+                String n2 = nuevo_lista_nums.get(1);
+                numero1 = Double.parseDouble(n1);
+                numero2 = Double.parseDouble(n2);
+                double reemplazo = superTipoOperacion(numero1, numero2, i, false);
+                nuevo_lista_nums.set(0, "" + reemplazo);
+                nuevo_lista_nums.remove(1);
+            }
+        }
+        finally{
+            solucion = nuevo_lista_nums.get(0) + "";
+            
+            return solucion;
+        }
+        
+    }
+
+    /**
+     * realiza la operacion que le corresponda(suma, resta...)
+     * @param num1 numero de la operacion a la izquierda
+     * @param num2 numero de la operacio a la derecha
+     * @param index posicion del caracter en el array
+     * @param accion booleano que nos dice si hay que realizar una raiz cuadrada 
+     * @return debuelve el resultado de la operacion
+     */
+    private Double superTipoOperacion(double num1, double num2, int index, boolean accion) {
+        double solucion = 0.0;
+        if (accion) {
+            solucion = Math.sqrt(num1);
+        } else {
+            String simbolo = lista_caract.get(index);
+            switch (simbolo) {
+                case "+":
+                    solucion = num1 + num2;
+                    break;
+                case "-":
+                    solucion = num1 - num2;
+                    break;
+                case "*":
+                    solucion = num1 * num2;
+                    break;
+                case "/":
+                    solucion = num2 / num1;
+                    break;
+                case "^":
+                    solucion = Math.pow(num1, num2);
+                    break;
+                case "%":
+                    solucion = num1 % num2;
+                    break;
+            }
+        }
+        return solucion;
+    }
+
+    /**
+     * funcion que realiza las operaciones dentro de los parentesis 
+     * @param i contador de la clase que llama a esta
+     * @param lista array con los numeros y soluciones;
+     */
+    private void parentesis(int i, ArrayList<String> preLista) {
+        ArrayList<String> lista = new ArrayList();
+        double numero1, numero2;
+        for (int j = i; !lista_caract.get(j).equals(")"); j++) {
+            if (lista_caract.get(i+1).equals("(") || lista_caract.get(i + 2).equals("(")) {
+                parentesis(i+1, lista);
+            } else {
+
+                if (lista_caract.get(j).equals("*") || lista_caract.get(j).equals("/")) {
+                    numero1 = Integer.parseInt(lista_nums.get(j));
+                    numero2 = Integer.parseInt(lista_nums.get(j + 1));
+                    lista.add("" + superTipoOperacion(numero1, numero2, j+1, false));
+                    lista_caract.remove(j);
+                } else {
+                    if (lista_caract.get(j).equals("√")) {
+                        numero1 = Integer.parseInt(lista_nums.get(j));
+                        lista.add("" + superTipoOperacion(numero1, 0, j+1, true));
+                        lista_caract.remove(j);
+                    } else {
+                        lista.add(lista_nums.get(j));
+                    }
+                }
+            }
+        }
+        
+        
+        double resultado= 0.0;
+        for (int j = i; !lista_caract.get(j).equals(")"); j++) {
+            try {
+                numero1 = Double.parseDouble(lista_nums.get(i));
+                numero2 = Double.parseDouble(lista_nums.get(i+1));
+                resultado = superTipoOperacion(numero1, numero2, i+1, false);
+                lista_caract.remove(j+1);
+            } catch (IndexOutOfBoundsException ex) {
+                System.out.println("error parentesis");
+            }
+        }
+       
+        preLista.add(""+resultado);
+        int inicio = lista_caract.indexOf("(");
+        int fin = lista_caract.indexOf(")");
+        lista_caract.remove(fin);
+        lista_caract.remove(inicio);
+            
     }
 
     /**
