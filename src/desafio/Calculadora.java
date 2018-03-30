@@ -556,7 +556,7 @@ public class Calculadora extends javax.swing.JFrame {
         try {
             if (RBdecimalEntrada.isSelected()) {
                 if (RBdecimalSalida.isSelected()) {
-                    solucion = superOperacion() + "";
+                    solucion = operacion() + "";
                 }
                 if (RBoctalSalida.isSelected()) {
                     /*------------------------------------------------->
@@ -842,105 +842,6 @@ public class Calculadora extends javax.swing.JFrame {
     }//GEN-LAST:event_formComponentMoved
 
     /**
-     * extraemos los numeros y la operacion a realizar
-     *
-     * @deprecated metodo funcional pero no sigue la prioridad de las
-     * operaciones
-     * @return devolvemos la solucion final
-     */
-    private Double operacion() {
-        double solucion = 0.0;
-        double num1 = 0.0;
-        String raiz_num = "";
-        String simbolo = "";
-        for (int i = 0; i < lista_nums.size(); i++) {
-
-            simbolo = "" + lista_nums.get(i).charAt(0);
-
-            if (simbolo.equals("√")) {
-                for (int j = 1; j < lista_nums.get(i).length(); j++) {
-                    raiz_num += lista_nums.get(i).charAt(j);
-                }
-                num1 = Double.parseDouble(raiz_num);
-                solucion = tipoOperacion(num1, solucion, i, "√");
-            } else {
-                num1 = Double.parseDouble(lista_nums.get(i));
-                solucion = tipoOperacion(num1, solucion, i, "");
-            }
-        }
-        return solucion;
-    }
-
-    /**
-     * realizamos la operacion correspondiente
-     *
-     * @deprecated operaciones no validas para la prioridad
-     * @param num1 primer numero
-     * @param num2 segundo numero
-     * @param index indice del simbolo a mirar en el array
-     * @param simbol simbolo de la operacion
-     * @return
-     */
-    private Double tipoOperacion(double num1, double num2, int index, String simbol) {
-        double solucion = 0.0;
-        if (index > 0 && !simbol.equals("√")) {
-            String simbolo = lista_caract.get(index - 1);
-            switch (simbolo) {
-                case "+":
-                    solucion = num1 + num2;
-                    break;
-                case "-":
-                    solucion = num1 - num2;
-                    break;
-                case "*":
-                    solucion = num1 * num2;
-                    break;
-                case "/":
-                    solucion = num2 / num1;
-                    break;
-                case "^":
-                    solucion = Math.pow(num2, num1);
-                    break;
-                case "%":
-                    solucion = num2 % num1;
-                    break;
-            }
-        } else {
-            if (simbol.equals("")) {
-                solucion = num1;
-            }
-            if (simbol.equals("√") && index == 0) {
-                solucion = Math.sqrt(num1);
-            }
-            if (simbol.equals("√") && index != 0) {
-                num1 = (int) Math.sqrt(num1);
-                String simbolo = lista_caract.get(index - 1);
-                switch (simbolo) {
-                    case "+":
-                        solucion = num1 + num2;
-                        break;
-                    case "-":
-                        solucion = num1 - num2;
-                        break;
-                    case "*":
-                        solucion = num1 * num2;
-                        break;
-                    case "/":
-                        solucion = num2 / num1;
-                        break;
-                    case "^":
-                        solucion = Math.pow(num2, num1);
-                        break;
-                    case "%":
-                        solucion = num2 % num1;
-                        break;
-                }
-            }
-        }
-        return solucion;
-    }
-
-    /**
      * añadimos cualquier valor especial como puede ser en romano X o en
      * hexadecimal E...
      */
@@ -991,11 +892,11 @@ public class Calculadora extends javax.swing.JFrame {
      * realiza operaciones con orden de prioridad
      * @return debuelve el resultado de las operaciones
      */
-    private String superOperacion() {
+    private double operacion() {
         //ArrayList<Integer> posiciones_prioridad = new ArrayList();
         ArrayList<String> nuevo_lista_nums = new ArrayList();
         double numero1, numero2;
-        String solucion = "";
+        double solucion = 0.0;
         boolean parentesis = false;
         try{
             for (int i = 0; i < lista_caract.size(); i++) {
@@ -1007,12 +908,12 @@ public class Calculadora extends javax.swing.JFrame {
                     if (lista_caract.get(i).equals("*") || lista_caract.get(i).equals("/")) {
                         numero1 = Integer.parseInt(lista_nums.get(i));
                         numero2 = Integer.parseInt(lista_nums.get(i + 1));
-                        nuevo_lista_nums.add("" + superTipoOperacion(numero1, numero2, i, false));
+                        nuevo_lista_nums.add("" + tipoOperacion(numero1, numero2, i, false));
                         lista_caract.remove(i);
                     } else {
                         if (lista_caract.get(i).equals("√")) {
                             numero1 = Integer.parseInt(lista_nums.get(i));
-                            nuevo_lista_nums.add("" + superTipoOperacion(numero1, 0, i, true));
+                            nuevo_lista_nums.add("" + tipoOperacion(numero1, 0, i, true));
                             lista_caract.remove(i);
                         } 
                         else {
@@ -1034,13 +935,13 @@ public class Calculadora extends javax.swing.JFrame {
                 String n2 = nuevo_lista_nums.get(1);
                 numero1 = Double.parseDouble(n1);
                 numero2 = Double.parseDouble(n2);
-                double reemplazo = superTipoOperacion(numero1, numero2, i, false);
+                double reemplazo = tipoOperacion(numero1, numero2, i, false);
                 nuevo_lista_nums.set(0, "" + reemplazo);
                 nuevo_lista_nums.remove(1);
             }
         }
         finally{
-            solucion = nuevo_lista_nums.get(0) + "";
+            solucion = Double.parseDouble(nuevo_lista_nums.get(0));
             
             return solucion;
         }
@@ -1055,7 +956,7 @@ public class Calculadora extends javax.swing.JFrame {
      * @param accion booleano que nos dice si hay que realizar una raiz cuadrada 
      * @return debuelve el resultado de la operacion
      */
-    private Double superTipoOperacion(double num1, double num2, int index, boolean accion) {
+    private Double tipoOperacion(double num1, double num2, int index, boolean accion) {
         double solucion = 0.0;
         if (accion) {
             solucion = Math.sqrt(num1);
@@ -1101,12 +1002,12 @@ public class Calculadora extends javax.swing.JFrame {
                 if (lista_caract.get(j).equals("*") || lista_caract.get(j).equals("/")) {
                     numero1 = Integer.parseInt(lista_nums.get(j));
                     numero2 = Integer.parseInt(lista_nums.get(j + 1));
-                    lista.add("" + superTipoOperacion(numero1, numero2, j+1, false));
+                    lista.add("" + tipoOperacion(numero1, numero2, j+1, false));
                     lista_caract.remove(j);
                 } else {
                     if (lista_caract.get(j).equals("√")) {
                         numero1 = Integer.parseInt(lista_nums.get(j));
-                        lista.add("" + superTipoOperacion(numero1, 0, j+1, true));
+                        lista.add("" + tipoOperacion(numero1, 0, j+1, true));
                         lista_caract.remove(j);
                     } else {
                         lista.add(lista_nums.get(j));
@@ -1121,7 +1022,7 @@ public class Calculadora extends javax.swing.JFrame {
             try {
                 numero1 = Double.parseDouble(lista_nums.get(i));
                 numero2 = Double.parseDouble(lista_nums.get(i+1));
-                resultado = superTipoOperacion(numero1, numero2, i+1, false);
+                resultado = tipoOperacion(numero1, numero2, i+1, false);
                 lista_caract.remove(j+1);
             } catch (IndexOutOfBoundsException ex) {
                 System.out.println("error parentesis");
