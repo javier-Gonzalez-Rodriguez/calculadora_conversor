@@ -22,6 +22,10 @@ public class NumsRomanos extends javax.swing.JFrame {
         calculadora = null;
     }
     
+    /**
+     * constructor por parametros
+     * @param v se le pasa la ventana principal
+     */
     public NumsRomanos(Calculadora v){
         initComponents();
         calculadora = v;

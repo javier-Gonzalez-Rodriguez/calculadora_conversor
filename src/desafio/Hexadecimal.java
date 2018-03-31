@@ -14,8 +14,7 @@ import java.util.ArrayList;
 public class Hexadecimal {
     
     /**
-     * constructor de la clase 
-     * @param num valor a convertir
+     * constructor de la clase por defecto
      */
     public Hexadecimal() {
     }
@@ -68,6 +67,7 @@ public class Hexadecimal {
     
     /**
      * convertimos decimal a hexadecimal
+     * @param numero decimal para convertir a hexadecimal
      * @return devolvemos el numero en hexadecimal
      */
     public String decimalToHex(int numero){

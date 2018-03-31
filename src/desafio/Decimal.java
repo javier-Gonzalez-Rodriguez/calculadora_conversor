@@ -14,9 +14,17 @@ import javax.swing.JOptionPane;
  */
 public class Decimal {
 
+    /**
+     * constructor por defecto
+     */
     public Decimal() {
     }
 
+    /**
+     * convierte un numero decimal a escrito
+     * @param valor valor decimal para convertir
+     * @return devuelve el valor en escrito
+     */
     public String decimalToEscrito(String valor) {
         String solucion = "";
         boolean cent = false;
@@ -84,6 +92,11 @@ public class Decimal {
         return solucion;
     }
 
+    /**
+     * convierte el valor de una unidad a escrito
+     * @param valor numero decimal de un digito
+     * @return devuelve el valor en escrito
+     */
     private String unDigito(int valor) {
         String solucion = "";
         switch (valor) {
@@ -121,6 +134,11 @@ public class Decimal {
         return solucion;
     }
 
+    /**
+     * convierte el valor de una decena a escrito de 10 - 19
+     * @param valor numero decimal de dos digito
+     * @return devuelve el valor en escrito
+     */
     private String dosDigitosEsp1(int valor) {
         String solucion = "";
         switch (valor) {
@@ -158,6 +176,11 @@ public class Decimal {
         return solucion;
     }
 
+    /**
+     * convierte el valor de una decena de 20-29
+     * @param valor numero decimal de dos digito
+     * @return devuelve el valor en escrito
+     */
     private String dosDigitosEsp2(int valor){
         String solucion = "";
         switch (valor) {
@@ -194,6 +217,13 @@ public class Decimal {
         }
         return solucion;
     }
+    
+    /**
+     * convierte el valor de una decena a escrito siendo numeros exactos 
+     * como son el 30, 40...90
+     * @param valor numero decimal de dos digito
+     * @return devuelve el valor en escrito
+     */
     private String dosDigitos(int valor) {
         String solucion = "";
         switch (valor) {
@@ -222,6 +252,11 @@ public class Decimal {
         return solucion;
     }
 
+    /**
+     * convierte el valor de una centena a escrito
+     * @param valor numero decimal de tres digito
+     * @return devuelve el valor en escrito
+     */
     private String tresDigitos(int valor) {
         String solucion = "";
         switch (valor) {
@@ -256,6 +291,11 @@ public class Decimal {
         return solucion;
     }
 
+    /**
+     * convierte el valor de un millar a escrito
+     * @param valor numero decimal de tres digitos
+     * @return devuelve el valor en escrito
+     */
     private String cuatroDigitos(int valor) {
         String solucion = "";
         switch (valor) {
@@ -290,6 +330,11 @@ public class Decimal {
         return solucion;
     }
     
+    /**
+     * convertimos el valor escrito a decimal
+     * @param valor texto para convertir a decimal
+     * @return devuelve el valor en decimal
+     */
     public String escritoToDecimal(String valor){
         String solucion = "";
         String valores[] = valor.split(" ");

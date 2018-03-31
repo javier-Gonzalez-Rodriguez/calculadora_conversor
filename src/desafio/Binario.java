@@ -14,11 +14,16 @@ import java.util.ArrayList;
 public class Binario {
 
     /**
-     * constructor de la clase
+     * constructor de la clase por defecto
      */
     public Binario() {
     }
     
+    /**
+     * convertimos un numero decimal a binario
+     * @param numero numero decimal a convertir
+     * @return devuelve el numero en binario
+     */
     public String decimalToBinary(int numero){
         ArrayList<Integer> lista = new ArrayList();
         String conversion="";
@@ -33,6 +38,11 @@ public class Binario {
         return conversion;
     }
     
+    /**
+     * convertimos el numero binario en decimal
+     * @param num numero binario para convertir
+     * @return devuelve el valor en decimal
+     */
     public int BinarioTodecimal(int num){
         String numero = ""+num;
         int nuevo_num = 0;

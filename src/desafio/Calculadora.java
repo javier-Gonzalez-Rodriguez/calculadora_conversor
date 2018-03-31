@@ -844,12 +844,16 @@ public class Calculadora extends javax.swing.JFrame {
     /**
      * añadimos cualquier valor especial como puede ser en romano X o en
      * hexadecimal E...
+     * @param num valor a poner en pantalla 
      */
     public void addNumsEsp(String num) {
         TAsalida.append(num);
         this.num += num;
     }
 
+    /**
+     * activamos todos los botones de la calculadora
+     */
     public void activarBotones() {
         Bcoma.setEnabled(true);
         Bdividir.setEnabled(true);
@@ -873,6 +877,9 @@ public class Calculadora extends javax.swing.JFrame {
         B0.setEnabled(true);
     }
 
+    /**
+     * desactivamos los botones necesarios de la calculadora para la conversion
+     */
     public void desactivarBotones() {
         TAsalida.setEditable(false);
         TAsalida.setEnabled(false);
@@ -890,7 +897,7 @@ public class Calculadora extends javax.swing.JFrame {
 
     /**
      * realiza operaciones con orden de prioridad
-     * @return debuelve el resultado de las operaciones
+     * @return devuelve el resultado de las operaciones
      */
     private double operacion() {
         //ArrayList<Integer> posiciones_prioridad = new ArrayList();
@@ -954,7 +961,7 @@ public class Calculadora extends javax.swing.JFrame {
      * @param num2 numero de la operacio a la derecha
      * @param index posicion del caracter en el array
      * @param accion booleano que nos dice si hay que realizar una raiz cuadrada 
-     * @return debuelve el resultado de la operacion
+     * @return devuelve el resultado de la operacion
      */
     private Double tipoOperacion(double num1, double num2, int index, boolean accion) {
         double solucion = 0.0;

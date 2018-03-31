@@ -22,6 +22,10 @@ public class Numshexadecimales extends javax.swing.JFrame {
         calc = null;
     }
 
+    /**
+     * constructor por parametros
+     * @param c se le pasa la ventana principal
+     */
     public Numshexadecimales(Calculadora c) {
         initComponents();
         calc = c;

@@ -11,6 +11,10 @@ package desafio;
  */
 public class NumeroException extends Exception{
 
+    /**
+     * excepcion para los numeros mal introducidos 
+     * @param message mensaje de error
+     */
     public NumeroException(String message) {
         super(message);
     }

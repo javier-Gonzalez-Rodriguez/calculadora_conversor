@@ -36,6 +36,11 @@ public class Octal {
         return numero;
     }
     
+    /**
+     * convierte a decimal un numero octal
+     * @param num valor octal a convertir
+     * @return devuelve el valor a decimal
+     */
     public int OctalTodecimal(int num){
         String numero = ""+num;
         int nuevo_num = 0;

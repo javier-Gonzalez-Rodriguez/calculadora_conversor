@@ -13,6 +13,9 @@ import javax.swing.JOptionPane;
  */
 public class Romano {
 
+    /**
+     * clase por defecto
+     */
     public Romano() {
     }
     /**
@@ -162,7 +165,9 @@ public class Romano {
      * convertimos de romano a decimal
      * @param numero numero que vamos a convertir
      * @return devuelve el numero convertido
+     * @throws NumeroException lanza un numeroException en caso de error
      */
+    
     public int RomanoToDecimal(String numero) throws NumeroException{
         int numero_decimal = 0;
         for (int i = 0; i < numero.length(); i++) {
